@@ -1,11 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <h1>Hello, world!</h1>
-    </body>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Wizard Realty</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="px-3 py-2 text-bg-light border-bottom">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          >
+            <a
+              href=""
+              class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+            >
+                <img src="/templates/images/Wizard_Realty_Logo.png" alt="logo" width="40" height="32">
+            </a>
+
+            <ul
+              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+            >
+              <li>
+                <a href="#" class="nav-link text-indigo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                    </svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-gear" viewBox="0 0 16 16">
+                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                    </svg>
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>          
+                  User
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 py-2 border-bottom mb-3 bg-light">
+        <div class="container d-flex flex-wrap justify-content-between">
+                <p class="fs-4">Property List</p>
+                    <div class="d-flex">
+                    <form
+                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4"
+                        role="search"
+                    >
+                        <input
+                        type="search"
+                        class="form-control"
+                        placeholder="Search..."
+                        aria-label="Search"
+                        />
+                    </form>
+                    <button type="button" class="btn btn-primary">Add Property</button>
+                </div>
+            </div>
+      </div>
+    </header>
+    <main>
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/Din House.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Din Estates</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern2.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Mansion de Randell</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Randell Cordova</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/hacienda.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Hacienda Roa</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Adriane Troy V. Roa</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Gamolo Modern House</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Clint Harvey Gamolo</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/house.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Golden Shine</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern3.jpg" width="100%" height="225" alt="">
+                        
+                        <div class="card-body">
+                            <h2 class="card-title">Din Europa</h2>
+                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                              </div>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" async defer></script>
+  </body>
 </html>
