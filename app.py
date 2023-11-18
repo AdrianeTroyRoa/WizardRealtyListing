@@ -1,4 +1,4 @@
-from flask import Flask, render_template 
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
 
@@ -11,4 +11,4 @@ def user(name):
     return render_template("pages.html", page_name=name)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5050)
+    app.run(host="0.0.0.0", port=5050, debug=True)
