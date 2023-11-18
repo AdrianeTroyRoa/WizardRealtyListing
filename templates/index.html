@@ -29,7 +29,7 @@
               href=""
               class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
             >
-                <img src="/templates/images/Wizard_Realty_Logo.png" alt="logo" width="40" height="32">
+            <img src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png') }}" alt="logo" width="40" height="32">
             </a>
 
             <ul
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="px-3 py-2 border-bottom mb-3 bg-light">
+      <div class="px-3 py-2 border-bottom bg-light">
         <div class="container d-flex flex-wrap justify-content-between">
                 <p class="fs-4">Property List</p>
                     <div class="d-flex">
@@ -91,12 +91,10 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/Din House.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Din Estates</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -109,12 +107,10 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern2.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/house.jpg')}}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Mansion de Randell</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Randell Cordova</p>
+                            <p class="card-text"><strong>Seller: </strong>Randell Cordova</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -127,12 +123,10 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/hacienda.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg') }}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Hacienda Roa</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Adriane Troy V. Roa</p>
+                            <p class="card-text"><strong>Seller: </strong>Adriane Troy V. Roa</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -145,12 +139,10 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg')}}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Gamolo Modern House</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Clint Harvey Gamolo</p>
+                            <p class="card-text"><strong>Seller: </strong>Clint Harvey Gamolo</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
@@ -163,36 +155,32 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/house.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern2.jpg')}}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Golden Shine</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                               </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
                         </div>
                     </div>
                 </div>
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-                        <img class="bd-placeholder-img card-img-top" src="/templates/images/modern3.jpg" width="100%" height="225" alt="">
-                        
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern3.jpg') }}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Din Europa</h2>
-                            <p class="card-text lead"><strong>Seller: </strong>Din Shane Magallanes</p>
+                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                               </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
+                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
                         </div>
                     </div>
                 </div>
