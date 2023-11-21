@@ -1,7 +1,8 @@
 from . import db
 from sqlalchemy.sql import func
+from flask_login import UserMixin
 
-class Person(db.Model):
+class Person(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(20), nullable=False)
     middle_name = db.Column(db.String(20))
