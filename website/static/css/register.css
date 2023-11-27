@@ -30,3 +30,11 @@ body {
 .form-signin input[placeholder="Postal Code"]{
   margin-bottom: 20px;
 }
+
+.form-signin select[name="gender"]{
+  height:58px;
+}
+
+.form-signin select[name="employeeType"]{
+  height:58px;
+}
