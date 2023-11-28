@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from .models import Person
+from .models import Person, Address, Employee
 from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
@@ -17,6 +17,10 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+@auth.route('/success')
+def success():
+    return render_template('success.html')
+
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -29,6 +33,7 @@ def register():
         password2 = request.form.get('confirmPassword')
         birth_date = request.form.get('birthDate')
         house_no = request.form.get('houseNo')
+        street = request.form.get('street')
         barangay = request.form.get('barangay')
         city = request.form.get('city')
         province = request.form.get('province')
@@ -73,13 +78,28 @@ def register():
         elif employee_type=='Employment Status':
             flash('Please enter Employment Status!', category='error')
         else:
-            new_person = Person(first_name=first_name, last_name=last_name, email_address=email,
-                                date_of_birth=birth_date)
-            return success()        
-        
-    
-    return render_template('register.html')
+            new_address = Address(loc_number = house_no, street_name=street, barangay=barangay, city=city, province=province, postal_code=postal_code)
 
-@auth.route('/success')
-def success():
-    return render_template('success.html')
+            db.session.add(new_address)
+            db.session.commit()
+
+            address_id = new_address.id
+
+            new_person = Person(first_name=first_name, last_name=last_name, email_address=email,
+                                date_of_birth=birth_date,address_id=address_id)
+            db.session.add(new_person)
+            db.session.commit()
+
+            employee_id  = new_person.id
+
+            if employee_type=="Senior":
+                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='sha256'), is_senior=True)
+            else:
+                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='sha256'), is_senior=False)
+
+            db.session.add(new_employee)
+            db.session.commit()
+            
+            return redirect(url_for('auth.success'))        
+          
+    return render_template('register.html')
