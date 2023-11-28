@@ -93,9 +93,9 @@ def register():
             employee_id  = new_person.id
 
             if employee_type=="Senior":
-                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='sha256'), is_senior=True)
+                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=True)
             else:
-                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='sha256'), is_senior=False)
+                new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=False)
 
             db.session.add(new_employee)
             db.session.commit()
