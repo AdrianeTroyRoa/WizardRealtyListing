@@ -85,12 +85,12 @@ def register():
             db.session.commit()
 
             address_id = new_address.id
-            
+
             if gender=='1':
-                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact=contact, is_male=True, email_address=email,
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact_number=contact, is_male=True, email_address=email,
                                 date_of_birth=birth_date,address_id=address_id)
             else:
-                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact=contact, is_male=False,email_address=email,
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact_number=contact, is_male=False,email_address=email,
                                 date_of_birth=birth_date,address_id=address_id)
             
             db.session.add(new_person)
