@@ -142,9 +142,9 @@
           </div>
           {% endif %} {% endfor %} {% endif %} {% endwith %}
         <h1 class="h3 mb-3 fw-bold">Register an account</h1>
-        <div class="row g-2">
+        <div class="row g-3">
           <div class="col-md">
-            <div class="form-floating">
+            <div class="form-floating custom-form">
               <input
                 type="text"
                 class="form-control"
@@ -156,7 +156,7 @@
             </div>
           </div>
           <div class="col-md">
-            <div class="form-floating">
+            <div class="form-floating custom-form">
               <input
                 type="text"
                 class="form-control"
@@ -166,6 +166,15 @@
               />
               <label for="floatingInputGrid">Last Name</label>
             </div>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" aria-label="Default select example" id="employeeType" name="employeeType">
+              <option selected>Suffix</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="Sr">Sr.</option>
+            </select>
           </div>
         </div>
         <div class="row g-2">

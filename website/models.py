@@ -7,6 +7,7 @@ class Person(db.Model, UserMixin):
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
     name_append = db.Column(db.String(20))
+    contact = db.Column(db.Integer, nullable=False, unique=True)
     email_address = db.Column(db.String(20), nullable=False, unique=True)
     date_of_birth = db.Column(db.Date)
     date_account = db.Column(db.DateTime(timezone=True), default=func.now())

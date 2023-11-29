@@ -26,6 +26,7 @@ def register():
     if request.method == 'POST':
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
+        suffix=request.form.get('suffix')
         contact = request.form.get('phoneNo')
         gender = request.form.get('gender')
         email = request.form.get('email')
@@ -84,15 +85,20 @@ def register():
             db.session.commit()
 
             address_id = new_address.id
-
-            new_person = Person(first_name=first_name, last_name=last_name, email_address=email,
+            
+            if gender=='1':
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact=contact, is_male=True, email_address=email,
                                 date_of_birth=birth_date,address_id=address_id)
+            else:
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact=contact, is_male=False,email_address=email,
+                                date_of_birth=birth_date,address_id=address_id)
+            
             db.session.add(new_person)
             db.session.commit()
 
             employee_id  = new_person.id
 
-            if employee_type=="Senior":
+            if employee_type=='2':
                 new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=True)
             else:
                 new_employee = Employee(id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=False)

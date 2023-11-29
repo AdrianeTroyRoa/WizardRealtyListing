@@ -38,3 +38,7 @@ body {
 .form-signin select[name="employeeType"]{
   height:58px;
 }
+
+.custom-form{
+  margin-right: -8px;
+}
