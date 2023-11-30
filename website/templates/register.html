@@ -212,11 +212,14 @@
               name="gender"
               required
             >
-              <option selected disabled value>Gender</option>
+              <option selected>Gender</option>
               <option value="1">Male</option>
               <option value="2">Female</option>
               <option value="3">Others</option>
             </select>
+            <div class="invalid-feedback">
+              Select a value.
+            </div>
           </div>
           <div class="col-md">
             <div class="form-floating">
@@ -384,7 +387,7 @@
               name="employeeType"
               required
             >
-              <option selected disabled value>Employment Status</option>
+              <option selected>Employment Status</option>
               <option value="1">Junior</option>
               <option value="2">Senior</option>
             </select>
@@ -409,6 +412,7 @@
         form.addEventListener('submit', function (event) {
           var firstName = document.getElementById('firstName');
           var lasttName = document.getElementById('lastName');
+          var gender = document.getElementById('gender');
     
           // Validate phone number length
           if (firstName.value.length <2) {
@@ -419,15 +423,23 @@
             lasttName.classList.add('is-invalid');
             event.preventDefault();
           }
+          else if(gender.value=='Gender'){
+            gender.classList.add('is-invalid');
+            event.preventDefault();
+          }
         });
         
         var firstNameInput = document.getElementById('firstName');
         firstNameInput.addEventListener('input', function () {
           firstNameInput.classList.remove('is-invalid');
         });
-        var lasttNameInput = document.getElementById('lastName');
-        firstNameInput.addEventListener('input', function () {
-          firstNameInput.classList.remove('is-invalid');
+        var lastNameInput = document.getElementById('lastName');
+        lastNameInput.addEventListener('input', function () {
+          lastNameInput.classList.remove('is-invalid');
+        });
+        var genderSelect = document.getElementById('gender');
+        genderSelect.addEventListener('change', function () {
+          genderSelect.classList.remove('is-invalid');
         });
       });
     </script>
