@@ -18,7 +18,7 @@ class Person(db.Model, UserMixin):
 
 class Employee(db.Model):
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
-    employee_number = db.Column(db.String(8), unique=True)
+    employee_id = db.Column(db.String(8), unique=True)
     date_employed = db.Column(db.Date)
     password = db.Column(db.String(200), nullable=False)
     is_senior = db.Column(db.Boolean)

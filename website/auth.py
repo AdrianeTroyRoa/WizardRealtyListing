@@ -19,8 +19,8 @@ def logout():
 
 @auth.route('/success')
 def success():
-    employee_number = request.args.get('employee_number')
-    return render_template('success.html',employee_number=employee_number)
+    employee_id = request.args.get('employee_number')
+    return render_template('success.html',employee_id=employee_id)
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -100,16 +100,16 @@ def register():
             person_id  = new_person.id
 
             employment_year= employment_date.year
-            employee_number = f"WRL{employment_year}{person_id}"
+            employee_id = f"WRL{employment_year}{person_id}"
 
             if employee_type=='2':
-                new_employee = Employee(id=person_id, employee_number=employee_number, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=True,)
+                new_employee = Employee(id=person_id, employee_id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=True,)
             else:
-                new_employee = Employee(id=person_id, employee_number=employee_number, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=False)
+                new_employee = Employee(id=person_id, employee_id=employee_id, date_employed=employment_date,password=generate_password_hash(password,method='pbkdf2:sha1'), is_senior=False)
 
             db.session.add(new_employee)
             db.session.commit()
             
-            return redirect(url_for('auth.success',employee_number=employee_number))        
+            return redirect(url_for('auth.success',employee_id=employee_id))        
           
     return render_template('register.html')
