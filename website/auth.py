@@ -13,12 +13,12 @@ def login():
     if request.method=='POST':
         employee_id= request.form.get('employee_id')
         password = request.form.get('password')
-        print(employee_id)
-        print(password)
+
         employee= Employee.query.filter_by(employee_id=employee_id).first()
-        print(employee)
+
         if employee:
             if check_password_hash(employee.password, password):
+                login_user(employee,remember=True)
                 return redirect(url_for('auth.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
@@ -111,7 +111,7 @@ def register():
 
             db.session.add(new_address)
             db.session.commit()
-
+            
             address_id = new_address.id
 
             if gender=='1':
