@@ -101,16 +101,31 @@
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
     <main class="form-signin w-100 m-auto border bg-white" style="border-radius: 15px;">
-      <form class="">
+      <form class="", method="POST">
         <img class="mb-4" src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png')}}" alt="" width="72" height="57">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %} {% if category ==
+          'error' %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+          </div>
+          {% else %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            </button>
+          </div>
+          {% endif %} {% endfor %} {% endif %} {% endwith %}
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+          <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="WRL20200">
+          <label for="floatingInput">Employee ID</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
 
@@ -131,6 +146,7 @@
       </form>
     </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
 
