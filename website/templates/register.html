@@ -110,7 +110,6 @@
     <link
       href="{{ url_for('static', filename='css/register.css') }}"
       rel="stylesheet"
-
     />
   </head>
   <body class="d-flex a lign-items-center py-4 bg-body-tertiary">
@@ -118,7 +117,7 @@
       class="form-signin w-100 m-auto border bg-white"
       style="border-radius: 15px"
     >
-      <form class="" method="POST">
+      <form class="needs-validation" novalidate method="POST">
         <img
           class="mb-4"
           src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png')}}"
@@ -127,20 +126,34 @@
           height="57"
         />
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
-          messages %} {% for category, message in messages %} {% if category ==
-          'error' %}
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            </button>
-          </div>
-          {% else %}
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            </button>
-          </div>
-          {% endif %} {% endfor %} {% endif %} {% endwith %}
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% else %}
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          {{ message }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
         <h1 class="h3 mb-3 fw-bold">Register an account</h1>
         <div class="row g-3">
           <div class="col-md">
@@ -151,8 +164,12 @@
                 id="firstName"
                 name="firstName"
                 placeholder="First Name"
+                required
               />
               <label for="floatingInputGrid">First Name</label>
+              <div class="invalid-feedback">
+                First Name must be more than 2 characters.
+              </div>
             </div>
           </div>
           <div class="col-md">
@@ -163,13 +180,22 @@
                 id="lastName"
                 name="lastName"
                 placeholder="Last Name"
+                required
               />
               <label for="floatingInputGrid">Last Name</label>
+              <div class="invalid-feedback">
+                Last Name must be more than 2 characters.
+              </div>
             </div>
           </div>
           <div class="col-md-3">
-            <select class="form-select" aria-label="Default select example" id="employeeType" name="employeeType">
-              <option selected>Suffix</option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="employeeType"
+              name="employeeType"
+            >
+              <option selected disabled value>Suffix</option>
               <option value="II">II</option>
               <option value="III">III</option>
               <option value="IV">IV</option>
@@ -179,8 +205,14 @@
         </div>
         <div class="row g-2">
           <div class="col-md-3">
-            <select class="form-select" aria-label="Default select example" id="gender" name="gender">
-              <option selected>Gender</option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="gender"
+              name="gender"
+              required
+            >
+              <option selected disabled value>Gender</option>
               <option value="1">Male</option>
               <option value="2">Female</option>
               <option value="3">Others</option>
@@ -194,6 +226,7 @@
                 id="phoneNo"
                 name="phoneNo"
                 placeholder="Phone Number (+63)"
+                required
               />
               <label for="floatingInput">Phone Number (+63) </label>
             </div>
@@ -206,6 +239,7 @@
             id="email"
             name="email"
             placeholder="name@example.com"
+            required
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -216,6 +250,7 @@
             id="password"
             name="password"
             placeholder="Password"
+            required
           />
           <label for="floatingPassword">Password</label>
         </div>
@@ -226,11 +261,18 @@
             id="confirmPassword"
             name="confirmPassword"
             placeholder="Password"
+            required
           />
           <label for="floatingPassword">Confirm password</label>
         </div>
         <div class="form-floating">
-          <input id="birthDate" name="birthDate" class="form-control" type="date" />
+          <input
+            id="birthDate"
+            name="birthDate"
+            class="form-control"
+            type="date"
+            required
+          />
           <span id="dateSelected"></span>
           <label for="birthDate">Date of Birth</label>
         </div>
@@ -244,6 +286,7 @@
                 id="houseNo"
                 name="houseNo"
                 placeholder="House/Building Number"
+                required
               />
               <label for="floatingInput">House/Building Number </label>
             </div>
@@ -256,12 +299,12 @@
                 id="street"
                 name="street"
                 placeholder="Street"
+                required
               />
               <label for="floatingInputGrid">Street</label>
             </div>
           </div>
         </div>
-        
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating">
@@ -271,6 +314,7 @@
                 id="barangay"
                 name="barangay"
                 placeholder="Barangay"
+                required
               />
               <label for="floatingInputGrid">Barangay</label>
             </div>
@@ -283,6 +327,7 @@
                 id="city"
                 name="city"
                 placeholder="City"
+                required
               />
               <label for="floatingInputGrid">City</label>
             </div>
@@ -297,6 +342,7 @@
                 id="province"
                 name="province"
                 placeholder="Province"
+                required
               />
               <label for="floatingInputGrid">Province</label>
             </div>
@@ -309,6 +355,7 @@
                 id="postalCode"
                 name="postalCode"
                 placeholder="Postal Code"
+                required
               />
               <label for="floatingInputGrid">Postal Code</label>
             </div>
@@ -318,14 +365,26 @@
         <div class="row g-2">
           <div class="col-md">
             <div class="form-floating">
-              <input id="birthDate" name="employmentDate" class="form-control" type="date" />
+              <input
+                id="birthDate"
+                name="employmentDate"
+                class="form-control"
+                type="date"
+                required
+              />
               <span id="employmentDate"></span>
               <label for="birthDate">Date of Employment</label>
             </div>
           </div>
           <div class="col-md">
-            <select class="form-select" aria-label="Default select example" id="employeeType" name="employeeType">
-              <option selected>Employment Status</option>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="employeeType"
+              name="employeeType"
+              required
+            >
+              <option selected disabled value>Employment Status</option>
               <option value="1">Junior</option>
               <option value="2">Senior</option>
             </select>
@@ -338,8 +397,41 @@
       </form>
     </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector('form');
+    
+        form.addEventListener('submit', function (event) {
+          var firstName = document.getElementById('firstName');
+          var lasttName = document.getElementById('lastName');
+    
+          // Validate phone number length
+          if (firstName.value.length <2) {
+            firstName.classList.add('is-invalid');
+            event.preventDefault(); // Prevent the form submission
+          } 
+          else if(lastName.value.length<2){
+            lasttName.classList.add('is-invalid');
+            event.preventDefault();
+          }
+        });
+        
+        var firstNameInput = document.getElementById('firstName');
+        firstNameInput.addEventListener('input', function () {
+          firstNameInput.classList.remove('is-invalid');
+        });
+        var lasttNameInput = document.getElementById('lastName');
+        firstNameInput.addEventListener('input', function () {
+          firstNameInput.classList.remove('is-invalid');
+        });
+      });
+    </script>
   </body>
 </html>
 
-<!-- random ass comment-->
+
