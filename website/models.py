@@ -2,7 +2,7 @@ from . import db
 from sqlalchemy.sql import func
 from flask_login import UserMixin
 
-class Person(db.Model, UserMixin):
+class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(20), nullable=False)
     last_name = db.Column(db.String(20), nullable=False)
@@ -16,7 +16,7 @@ class Person(db.Model, UserMixin):
     employee = db.relationship('Employee')
     employee_client_assignment = db.relationship('Employee_Client_Assignment')
 
-class Employee(db.Model):
+class Employee(db.Model, UserMixin):
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
     employee_id = db.Column(db.String(12), unique=True)
     date_employed = db.Column(db.Date)

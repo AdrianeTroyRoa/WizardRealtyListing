@@ -190,42 +190,42 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="">
+              <form method="POST">
                 <div class="mb-3">
                   <label for="propertyName" class="col-form-label">Property Name:</label>
-                  <input type="text" class="form-control" id="propertyName">
+                  <input type="text" class="form-control" id="propertyName" name="propertyName">
                 </div>
                 <div class="mb-3">
                   <label for="propertyAddress" class="col-form-label">Location Number:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
+                  <input type="text" class="form-control" id="propertyAddress" name="propertyLoc">
                 </div>
                 <div class="row mb-3">
                   <div class="col">
                     <label for="propertySeller" class="col-form-label">Street Name:</label>
-                    <input type="text" class="form-control" id="propertySeller">
+                    <input type="text" class="form-control" id="propertySeller" name="propertySt">
                   </div>
                   <div class="col">
                     <label for="propertySeller" class="col-form-label">Barangay:</label>
-                    <input type="text" class="form-control" id="propertySeller">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyBrgy">
                   </div>
                 </div>
                 <div class="mb-3">
                   <label for="propertyAddress" class="col-form-label">City:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
+                  <input type="text" class="form-control" id="propertyAddress" name="propertyCity">
                 </div>
                 <div class="row mb-3">
                   <div class="col">
                     <label for="propertySeller" class="col-form-label">Province:</label>
-                    <input type="text" class="form-control" id="propertySeller">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyProv">
                   </div>
                   <div class="col">
                     <label for="propertySeller" class="col-form-label">Postal Code:</label>
-                    <input type="text" class="form-control" id="propertySeller">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyPost">
                   </div>
                 </div>
                 <div class="mb-3">
                   <label for="propertyStatus" class="col-form-label">Status:</label>
-                  <select class="select-form" id="" aria-label="statusSelect">
+                  <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
                     <option selected>Available</option>
                     <option value="1">Unavailable</option>
                   </select>
@@ -235,8 +235,8 @@
                   <input class="form-control" id="propertyImage" type="file">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Close</button>
-                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                  <button class="btn btn-primary" type="submit">Save</button>
                 </div>
               </form>
             </div>
@@ -298,7 +298,7 @@
                   <input class="form-control" id="propertyImage" type="file">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Close</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
                   <button type="button" class="btn btn-primary">Save</button>
                 </div>
               </form>
