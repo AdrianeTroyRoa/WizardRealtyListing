@@ -8,9 +8,28 @@ from flask_login import login_user, login_required, logout_user, current_user
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login')
+@auth.route('/login',methods=['GET','POST'])
 def login():
+    if request.method=='POST':
+        employee_id= request.form.get('employee_id')
+        password = request.form.get('password')
+        print(employee_id)
+        print(password)
+        employee= Employee.query.filter_by(employee_id=employee_id).first()
+        print(employee)
+        if employee:
+            if check_password_hash(employee.password, password):
+                return redirect(url_for('auth.home'))
+            else:
+                flash('Incorrect password, try again.', category='error')
+        else:
+            flash('ID does not exist.', category='error')
+
     return render_template('login.html')
+
+@auth.route('/index')
+def home():
+    return render_template("index.html")
 
 @auth.route('/logout')
 @login_required
@@ -44,9 +63,16 @@ def register():
         employment_date=request.form.get('employmentDate')
         employee_type=request.form.get('employeeType')
 
-        if len(first_name)<2:
+        emailcheck= Person.query.filter_by(email_address=email).first()
+        contactcheck=Person.query.filter_by(contact_number=contact).first()
+
+        if emailcheck:
+            flash('Email already exist!', category='error')
+        if contactcheck:
+            flash('Contact number already exist!', category='error')
+        elif len(first_name)<2:
             flash('First Name must be greater than 1 character!', category='error')
-        if not first_name.isalpha():
+        elif not first_name.isalpha():
             flash('First Name must only contain letters in the alpabet', category='error')
         elif len(last_name)<2:
             flash('Last Name must be greater than 1 character!', category='error')
