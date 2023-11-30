@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -19,7 +20,7 @@ def logout():
 
 @auth.route('/success')
 def success():
-    employee_id = request.args.get('employee_number')
+    employee_id = request.args.get('employee_id')
     return render_template('success.html',employee_id=employee_id)
 
 @auth.route('/register', methods=['GET', 'POST'])
@@ -99,7 +100,8 @@ def register():
 
             person_id  = new_person.id
 
-            employment_year= employment_date.year
+            employment_date2 = datetime.strptime(employment_date, '%Y-%m-%d')
+            employment_year = employment_date2.year
             employee_id = f"WRL{employment_year}{person_id}"
 
             if employee_type=='2':
