@@ -51,9 +51,9 @@ def home():
             filename = secure_filename(file.filename)
             file.save(UPLOAD_FOLDER+filename)
             if(property_status == "Available"):
-                new_property = Property(name=property_name, property_type=property_type, is_available=True, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, property_type=property_type, is_available=True, addr=address_id, client_id=client_id, bg_image=filename)
             else:
-                new_property = Property(name=property_name, property_type=property_type, is_available=False, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, property_type=property_type, is_available=False, addr=address_id, client_id=client_id, bg_image=filename)
 
 
             db.session.add(new_property)
