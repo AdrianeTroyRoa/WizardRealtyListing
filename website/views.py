@@ -16,7 +16,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@views.route('/',methods=['GET','POST'])
+@views.route('/home',methods=['GET','POST'])
 @login_required
 def home():
     if request.method=='POST':
