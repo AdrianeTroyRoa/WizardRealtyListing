@@ -4,351 +4,841 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Wizard Realty</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="px-3 py-2 text-bg-light border-bottom">
-        <div class="container">
-          <div
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-          >
-            <a
-              href=""
-              class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-            >
-            <img src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png') }}" alt="logo" width="40" height="32">
-            </a>
-
-            <ul
-              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
-            >
-              <li>
-                <a href="#" class="nav-link text-indigo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-house-door" viewBox="0 0 16 16">
-                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
-                    </svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                    </svg>          
-                  User
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                    </svg>
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="px-3 py-2 border-bottom bg-light">
-        <div class="container d-flex flex-wrap justify-content-between">
-                <p class="fs-4">Property List</p>
-                    <div class="d-flex">
-                    <form
-                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4"
-                        role="search"
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Wizard Realty</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css')}}"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="{{ url_for('static', filename='images/favicon.ico') }}"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <header>
+            <div class="px-3 py-2 text-bg-light border-bottom">
+                <div class="container">
+                    <div
+                        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
                     >
-                        <input
-                        type="search"
-                        class="form-control"
-                        placeholder="Search..."
-                        aria-label="Search"
-                        />
-                    </form>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPropertyModal">Add Property</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">Add Client</button>
-                </div>
-            </div>
-      </div>
-    </header>
-    <main>
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Din Estates</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/house.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Mansion de Randell</h2>
-                            <p class="card-text"><strong>Seller: </strong>Randell Cordova</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg') }}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Hacienda Roa</h2>
-                            <p class="card-text"><strong>Seller: </strong>Adriane Troy V. Roa</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Gamolo Modern House</h2>
-                            <p class="card-text"><strong>Seller: </strong>Clint Harvey Gamolo</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern2.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Golden Shine</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern3.jpg') }}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Din Europa</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-          </div>
-      </div>
+                        <a
+                            href=""
+                            class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+                        >
+                            <img
+                                src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png') }}"
+                                alt="logo"
+                                width="40"
+                                height="32"
+                            />
+                        </a>
 
-      <!-- Add Property Modal -->
-      <div class="modal fade" id="addPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5">Add Property</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <ul
+                            class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+                        >
+                            <li>
+                                <a href="#" class="nav-link text-indigo">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill="currentColor"
+                                        class="bi d-block mx-auto mb-1 bi-house-door"
+                                        viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"
+                                        />
+                                    </svg>
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-primary">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill="currentColor"
+                                        class="bi d-block mx-auto mb-1 bi-person-circle"
+                                        viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                            d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+                                        />
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                                        />
+                                    </svg>
+                                    User
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-primary">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill="currentColor"
+                                        class="bi d-block mx-auto mb-1 bi-person-circle"
+                                        viewBox="0 0 16 16"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"
+                                        />
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
+                                        />
+                                    </svg>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <form method="POST">
-                <div class="mb-3">
-                  <label for="propertyName" class="col-form-label">Property Name:</label>
-                  <input type="text" class="form-control" id="propertyName" name="propertyName">
+            <div class="px-3 py-2 border-bottom bg-light">
+                <div class="container d-flex flex-wrap justify-content-between">
+                    <p class="fs-4">Property List</p>
+                    <div class="d-flex">
+                        <form
+                            class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4"
+                            role="search"
+                        >
+                            <input
+                                type="search"
+                                class="form-control"
+                                placeholder="Search..."
+                                aria-label="Search"
+                            />
+                        </form>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addPropertyModal"
+                        >
+                            Add Property
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addClientModal"
+                        >
+                            Add Client
+                        </button>
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">Location Number:</label>
-                  <input type="text" class="form-control" id="propertyAddress" name="propertyLoc">
-                </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Street Name:</label>
-                    <input type="text" class="form-control" id="propertySeller" name="propertySt">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Barangay:</label>
-                    <input type="text" class="form-control" id="propertySeller" name="propertyBrgy">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">City:</label>
-                  <input type="text" class="form-control" id="propertyAddress" name="propertyCity">
-                </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Province:</label>
-                    <input type="text" class="form-control" id="propertySeller" name="propertyProv">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Postal Code:</label>
-                    <input type="text" class="form-control" id="propertySeller" name="propertyPost">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyStatus" class="col-form-label">Status:</label>
-                  <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
-                    <option selected>Available</option>
-                    <option value="1">Unavailable</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyImage" class="col-form-label">Insert property image:</label>
-                  <input class="form-control" id="propertyImage" type="file">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                  <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-              </form>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Delete Property Modal-->
-      <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        </header>
+        <main>
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/Din House.jpg')}}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">Din Estates</h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Din Shane
+                                        Magallanes
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target=""
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#deletePropertyModal"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-success"
+                                                >Available</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/house.jpg')}}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        Mansion de Randell
+                                    </h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Randell Cordova
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-success"
+                                                >Available</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/modern.jpg') }}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">Hacienda Roa</h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Adriane Troy V.
+                                        Roa
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-success"
+                                                >Available</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/modern.jpg')}}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        Gamolo Modern House
+                                    </h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Clint Harvey
+                                        Gamolo
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-success"
+                                                >Available</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/modern2.jpg')}}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">Golden Shine</h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Din Shane
+                                        Magallanes
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-danger"
+                                                >Unavailable</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img
+                                    class="bd-placeholder-img card-img-top"
+                                    src="{{ url_for('static', filename='images/modern3.jpg') }}"
+                                    width="100%"
+                                    height="225"
+                                    alt=""
+                                />
+                                <div class="card-body">
+                                    <h2 class="card-title">Din Europa</h2>
+                                    <p class="card-text">
+                                        <strong>Seller: </strong>Din Shane
+                                        Magallanes
+                                    </p>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="btn-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editPropertyModal"
+                                            >
+                                                Interested
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                        <small class="text-body-secondary"
+                                            >Status:
+                                            <span
+                                                class="badge rounded-pill text-bg-danger"
+                                                >Unavailable</span
+                                            ></small
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Edit Property Modal-->
-      <div class="modal fade" id="editPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5">Edit Property</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- Add Property Modal -->
+            <div
+                class="modal fade"
+                id="addPropertyModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Add Property</h1>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyName"
+                                        class="col-form-label"
+                                        >Property Name:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyName"
+                                        name="propertyName"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyAddress"
+                                        class="col-form-label"
+                                        >Location Number:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyAddress"
+                                        name="propertyLoc"
+                                    />
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Street Name:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                            name="propertySt"
+                                        />
+                                    </div>
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Barangay:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                            name="propertyBrgy"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyAddress"
+                                        class="col-form-label"
+                                        >City:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyAddress"
+                                        name="propertyCity"
+                                    />
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Province:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                            name="propertyProv"
+                                        />
+                                    </div>
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Postal Code:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                            name="propertyPost"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyStatus"
+                                        class="col-form-label"
+                                        >Status:</label
+                                    >
+                                    <select
+                                        class="select-form"
+                                        id=""
+                                        aria-label="statusSelect"
+                                        name="propertyStat"
+                                    >
+                                        <option selected>Available</option>
+                                        <option value="1">Unavailable</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyImage"
+                                        class="col-form-label"
+                                        >Insert property image:</label
+                                    >
+                                    <input
+                                        class="form-control"
+                                        id="propertyImage"
+                                        type="file"
+                                    />
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        class="btn btn-primary"
+                                        type="submit"
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <form action="">
-                <div class="mb-3">
-                  <label for="propertyName" class="col-form-label">Property Name:</label>
-                  <input type="text" class="form-control" id="propertyName">
+
+            <!-- Delete Property Modal-->
+            <div
+                class="modal fade"
+                tabindex="-1"
+                role="dialog"
+                id="deletePropertyModal"
+            >
+                <div class="modal-dialog" role="document" tabindex="-1">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete confirmation</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p class="alert alert-danger">
+                                Are you sure you want to delete this property?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                            >
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">Location Number:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
-                </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Street Name:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Barangay:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">City:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
-                </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Province:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Postal Code:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyStatus" class="col-form-label">Status:</label>
-                  <select class="select-form" id="" aria-label="statusSelect">
-                    <option selected>Available</option>
-                    <option value="1">Unavailable</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyImage" class="col-form-label">Insert property image:</label>
-                  <input class="form-control" id="propertyImage" type="file">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                  <button type="button" class="btn btn-primary">Save</button>
-                </div>
-              </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <script src="index.js" async defer></script>
-  </body>
+
+            <!-- Edit Property Modal-->
+            <div
+                class="modal fade"
+                id="editPropertyModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Edit Property</h1>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyName"
+                                        class="col-form-label"
+                                        >Property Name:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyName"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyAddress"
+                                        class="col-form-label"
+                                        >Location Number:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyAddress"
+                                    />
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Street Name:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                        />
+                                    </div>
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Barangay:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyAddress"
+                                        class="col-form-label"
+                                        >City:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="propertyAddress"
+                                    />
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Province:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                        />
+                                    </div>
+                                    <div class="col">
+                                        <label
+                                            for="propertySeller"
+                                            class="col-form-label"
+                                            >Postal Code:</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="propertySeller"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyStatus"
+                                        class="col-form-label"
+                                        >Status:</label
+                                    >
+                                    <select
+                                        class="select-form"
+                                        id=""
+                                        aria-label="statusSelect"
+                                    >
+                                        <option selected>Available</option>
+                                        <option value="1">Unavailable</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="propertyImage"
+                                        class="col-form-label"
+                                        >Insert property image:</label
+                                    >
+                                    <input
+                                        class="form-control"
+                                        id="propertyImage"
+                                        type="file"
+                                    />
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
