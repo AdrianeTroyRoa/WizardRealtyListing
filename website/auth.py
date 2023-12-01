@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import Person, Address, Employee
 from flask_login import login_user, login_required, logout_user, current_user
+from .views import home
 
 auth = Blueprint('auth', __name__)
 
@@ -19,17 +20,13 @@ def login():
         if employee:
             if check_password_hash(employee.password, password):
                 login_user(employee,remember=True)
-                return redirect(url_for('auth.home'))
+                return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
             flash('ID does not exist.', category='error')
 
     return render_template('login.html')
-
-@auth.route('/index')
-def home():
-    return render_template("index.html")
 
 @auth.route('/logout')
 @login_required
