@@ -341,7 +341,11 @@
                             required
                           />
                           <label for="floatingInput">Phone Number (+63) </label>
+                          <div class="invalid-feedback">
+                            Must be in 11 DIGITS only.
+                          </div>
                         </div>
+                        
                       </div>
                     </div>
                     <div class="form-floating">
@@ -354,6 +358,9 @@
                         required
                       />
                       <label for="floatingInput">Email address</label>
+                      <div class="invalid-feedback">
+                        Email should have @.
+                      </div>
                     </div>
                     <div class="form-floating">
                       <input
@@ -365,6 +372,9 @@
                       />
                       <span id="dateSelected"></span>
                       <label for="birthDate">Date of Birth</label>
+                      <div class="invalid-feedback">
+                        Enter your Birth Date!
+                      </div>
                     </div>
                     <h3 class="h5 mb-2 fw-bold">Address</h3>
                     <div class="row g-2">
@@ -379,6 +389,9 @@
                             required
                           />
                           <label for="floatingInput">House/Building Number </label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-5">
@@ -392,6 +405,9 @@
                             required
                           />
                           <label for="floatingInputGrid">Street</label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -407,6 +423,9 @@
                             required
                           />
                           <label for="floatingInputGrid">Barangay</label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                       <div class="col-md">
@@ -420,6 +439,9 @@
                             required
                           />
                           <label for="floatingInputGrid">City</label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -435,6 +457,9 @@
                             required
                           />
                           <label for="floatingInputGrid">Province</label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                       <div class="col-md-3">
@@ -448,10 +473,13 @@
                             required
                           />
                           <label for="floatingInputGrid">Postal Code</label>
+                          <div class="invalid-feedback">
+                            Enter an appropriate value.
+                          </div>
                         </div>
                       </div>
                     </div>            
-                    <button class="btn btn-primary w-100 py-2 data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"" type="submit">
+                    <button class="btn btn-primary w-100 py-2" type="submit">
                       Register
                     </button>
                   </form>
@@ -544,6 +572,15 @@
         var firstName = document.getElementById("firstName");
         var lastName = document.getElementById("lastName");
         var gender = document.getElementById("gender");
+        var phoneNo = document.getElementById("phoneNo");
+        var email = document.getElementById("email");
+        var birthDate = document.getElementById("birthDate");
+        var houseNo = document.getElementById("houseNo");
+        var street = document.getElementById("street");
+        var barangay = document.getElementById("barangay");
+        var city = document.getElementById("city");
+        var province = document.getElementById("province");
+        var postalCode = document.getElementById("postalCode");
 
         // Validate first name length
         if (firstName.value.length < 2) {
@@ -567,6 +604,78 @@
           event.preventDefault(); // Prevent the form submission
         } else {
           gender.classList.remove("is-invalid");
+        }
+
+        var phoneNoRegex = /^\d+$/; // Regular expression to match only digits
+        if (phoneNo.value.length !== 11 || !phoneNoRegex.test(phoneNo.value)) {
+            phoneNo.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            phoneNo.classList.remove("is-invalid");
+        }
+
+        if (email.value.length <= 5 || !email.value.includes("@")) {
+            email.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            email.classList.remove("is-invalid");
+        }
+
+        // Validate birth date
+        if (!birthDate.value) {
+            birthDate.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            birthDate.classList.remove("is-invalid");
+        }
+
+        // Validate house number
+        if (houseNo.value.length <= 2) {
+            houseNo.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            houseNo.classList.remove("is-invalid");
+        }
+
+        // Validate street
+        if (street.value.length <= 2) {
+            street.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            street.classList.remove("is-invalid");
+        }
+
+        // Validate barangay
+        if (barangay.value.length <= 2) {
+            barangay.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            barangay.classList.remove("is-invalid");
+        }
+
+        // Validate city
+        if (city.value.length <= 2) {
+            city.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            city.classList.remove("is-invalid");
+        }
+
+        // Validate province
+        if (province.value.length <= 2) {
+            province.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            province.classList.remove("is-invalid");
+        }
+
+        // Validate postal code
+        var postalCodeRegex = /^\d+$/;
+        if (postalCode.value.length === 0 || !postalCodeRegex.test(postalCode.value)) {
+            postalCode.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            postalCode.classList.remove("is-invalid");
         }
       });
 
