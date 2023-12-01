@@ -89,6 +89,7 @@ def search():
 @views.route('/clients', methods=['GET', 'POST'])
 @login_required
 def clients():
+    print("hello")
     if request.method == 'POST':
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
@@ -140,12 +141,13 @@ def clients():
             
             return redirect(url_for('views.clients'))
         
-    ##    client = Client.query.order_by(Client.id.desc()).all()
-    ##    list_client = []
+    client = Client.query.order_by(Client.id.desc()).all()
 
-    ##    for client in client:
-    ##        list_client.append(client.id)
+    list_client = []
 
-    #clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
+    for client in client:
+        list_client.append(client.id)
 
-    return render_template('clients.html')
+    clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
+
+    return render_template('clients.html',clients=clients)

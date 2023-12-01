@@ -218,8 +218,8 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ client.client_id }}</td>
-                    <td>{{ person.first_name }}</td>
-                    <td>{{ person.last_name }}</td>
+                    <td>{{ client.person.first_name }}</td>
+                    <td>{{ client.person.last_name }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
