@@ -34,6 +34,7 @@ class Property(db.Model):
     date_listing = db.Column(db.DateTime(timezone=True), default=func.now())
     is_available = db.Column(db.Boolean)
     addr = db.Column(db.Integer, db.ForeignKey('address.id'), unique=True)
+    bg_image = db.Column(db.String(40))
     client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
 
 class Address(db.Model): 
