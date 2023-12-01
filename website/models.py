@@ -39,6 +39,12 @@ class Property(db.Model):
     client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
     bg_image = db.Column(db.String(40))
 
+class ClientLikesProperty(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
+    property_id = db.Column(db.Integer, db.ForeignKey('property.id'))
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+
 class Address(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     loc_number = db.Column(db.String(20))

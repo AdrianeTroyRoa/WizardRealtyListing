@@ -19,6 +19,20 @@ def allowed_file(filename):
 @views.route('/',methods=['GET','POST'])
 @login_required
 def home():
+    properties = Property.query.order_by(Property.id.desc()).all()
+    list_addr = []
+
+    for property in properties:
+        list_addr.append(property.addr)
+
+    addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
+
+    return render_template('index.html', properties=properties, addresses=addresses)
+
+
+@views.route('/addproperty',methods=['GET','POST'])
+@login_required
+def addprop():
     if request.method=='POST':
         property_name = request.form.get('propertyName')
         property_locnum = request.form.get('propertyLoc')
@@ -28,6 +42,8 @@ def home():
         property_province = request.form.get('propertyProv')
         property_pcode = request.form.get('propertyPost')
         property_status = request.form.get('propertyStat')
+        property_client = request.form.get('propertyCD')
+        property_type = request.form.get('propertyType')
 
         new_address = Address(loc_number = property_locnum, street_name= property_street, barangay=property_brgy, city=property_city, province=property_province, postal_code=property_pcode)
         
@@ -44,14 +60,15 @@ def home():
         
         if file.filename == '':
             return "empty file name of image"
+        print(property_type)
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(UPLOAD_FOLDER+filename)
             if(property_status == "Available"):
-                new_property = Property(name=property_name, property_type="estate", is_available=True, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, is_available=True, addr=address_id, bg_image=filename, client_id=property_client, property_type=property_type)
             else:
-                new_property = Property(name=property_name, property_type="estate", is_available=False, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, is_available=False, addr=address_id, bg_image=filename, client_id=property_client, property_type=property_type)
 
 
             db.session.add(new_property)
@@ -59,15 +76,6 @@ def home():
         
         return redirect(url_for('views.home'))
 
-    properties = Property.query.order_by(Property.id.desc()).all()
-    list_addr = []
-
-    for property in properties:
-        list_addr.append(property.addr)
-
-    addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
-
-    return render_template('index.html', properties=properties, addresses=addresses)
 
 @views.route('/search', methods=['GET'])
 @login_required
