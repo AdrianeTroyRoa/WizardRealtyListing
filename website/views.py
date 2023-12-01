@@ -111,34 +111,6 @@ def clients():
             flash('Email already exist!', category='error')
         if contactcheck:
             flash('Contact number already exist!', category='error')
-        elif len(first_name)<2:
-            flash('First Name must be greater than 1 character!', category='error')
-        elif not first_name.isalpha():
-            flash('First Name must only contain letters in the alpabet', category='error')
-        elif len(last_name)<2:
-            flash('Last Name must be greater than 1 character!', category='error')
-        elif not last_name.isalpha():
-            flash('Last Name must be greater than 1 character!', category='error')
-        elif gender=='Gender':
-            flash('Please select a gender!', category='error')
-        elif not contact.isdigit():
-            flash('Contact number must be in digits!', category='error')
-        elif not len(contact)==11:
-            flash('Contact number must have 11 digits!', category='error')
-        elif len(email)<3:
-            flash('Email must be greater than 3 characters!', category='error')
-        elif birth_date=='':
-            flash('Please enter Date of Birth!', category='error')
-        elif len(house_no)>100:
-            flash('House/Building Number length too long!', category='error')
-        elif len(barangay)>100:
-            flash('Barangay length too long!', category='error')
-        elif len(city)>100:
-            flash('City length too long!', category='error')
-        elif len(province)>100:
-            flash('Province length too long!', category='error')
-        elif not postal_code.isdigit():
-            flash('Postal code must be in digits!', category='error')
         else:
             new_address = Address(loc_number = house_no, street_name=street, barangay=barangay, city=city, province=province, postal_code=postal_code)
 
@@ -167,4 +139,13 @@ def clients():
             db.session.commit()
             
             return redirect(url_for('views.clients'))
-    return render_template('clients.html')
+        
+        client = Client.query.order_by(Client.id.desc()).all()
+        list_client = []
+
+        for client in client:
+            list_client.append(client.id)
+
+    clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
+
+    return render_template('clients.html', clients=clients, person=clients)
