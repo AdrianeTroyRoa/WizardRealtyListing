@@ -21,13 +21,29 @@ def allowed_file(filename):
 def home():
     properties = Property.query.order_by(Property.id.desc()).all()
     list_addr = []
+    list_cli = []
+    list_first = []
+    list_last = []
 
     for property in properties:
         list_addr.append(property.addr)
+        list_cli.append(property.client_id)
 
     addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
 
-    return render_template('index.html', properties=properties, addresses=addresses)
+    clients = Client.query.filter(Client.client_id.in_(list_cli)).order_by(Client.id.desc()).all()
+    try:
+        for i in list_cli:
+            person = Client.query.filter_by(client_id=i).first()
+            j = Person.query.filter_by(id=person.id).first()
+            list_first.append(j.first_name)
+            list_last.append(j.last_name)
+    except:
+        pass
+
+    print(list_first, list_last)
+    #persons = Person.query.filter(Person.id.in_(list_cli)).order_by(Person.id.desc()).all()
+    return render_template('index.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last)
 
 
 @views.route('/addproperty',methods=['GET','POST'])
