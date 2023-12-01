@@ -35,6 +35,7 @@ class Property(db.Model):
     is_available = db.Column(db.Boolean)
     addr = db.Column(db.Integer, db.ForeignKey('address.id'), unique=True)
     client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
+    bg_image = db.Column(db.String(40))
 
 class Address(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
