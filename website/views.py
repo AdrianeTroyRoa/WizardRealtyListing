@@ -1,9 +1,11 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from datetime import datetime
+from flask import Blueprint, flash, render_template, request, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from . import db
 from werkzeug.utils import secure_filename
-from .models import Property, Address
+from .models import Property, Address, Person, Client
 from werkzeug.utils import secure_filename
+
 
 views = Blueprint('views', __name__)
 
@@ -79,7 +81,90 @@ def search():
 
             'name': property.name,
             'seller': 'Din Shane Magallanes', #will change if connected to db
-            'is_available': property.is_available,
+            'is_available': property.is_available
         })
 
     return jsonify({'properties': property_list})
+
+@views.route('/clients', methods=['GET', 'POST'])
+@login_required
+def clients():
+    if request.method == 'POST':
+        first_name = request.form.get('firstName')
+        last_name = request.form.get('lastName')
+        suffix=request.form.get('suffix')
+        contact = request.form.get('phoneNo')
+        gender = request.form.get('gender')
+        email = request.form.get('email')
+        birth_date = request.form.get('birthDate')
+        house_no = request.form.get('houseNo')
+        street = request.form.get('street')
+        barangay = request.form.get('barangay')
+        city = request.form.get('city')
+        province = request.form.get('province')
+        postal_code = request.form.get('postalCode')
+
+        emailcheck= Person.query.filter_by(email_address=email).first()
+        contactcheck=Person.query.filter_by(contact_number=contact).first()
+
+        if emailcheck:
+            flash('Email already exist!', category='error')
+        if contactcheck:
+            flash('Contact number already exist!', category='error')
+        elif len(first_name)<2:
+            flash('First Name must be greater than 1 character!', category='error')
+        elif not first_name.isalpha():
+            flash('First Name must only contain letters in the alpabet', category='error')
+        elif len(last_name)<2:
+            flash('Last Name must be greater than 1 character!', category='error')
+        elif not last_name.isalpha():
+            flash('Last Name must be greater than 1 character!', category='error')
+        elif gender=='Gender':
+            flash('Please select a gender!', category='error')
+        elif not contact.isdigit():
+            flash('Contact number must be in digits!', category='error')
+        elif not len(contact)==11:
+            flash('Contact number must have 11 digits!', category='error')
+        elif len(email)<3:
+            flash('Email must be greater than 3 characters!', category='error')
+        elif birth_date=='':
+            flash('Please enter Date of Birth!', category='error')
+        elif len(house_no)>100:
+            flash('House/Building Number length too long!', category='error')
+        elif len(barangay)>100:
+            flash('Barangay length too long!', category='error')
+        elif len(city)>100:
+            flash('City length too long!', category='error')
+        elif len(province)>100:
+            flash('Province length too long!', category='error')
+        elif not postal_code.isdigit():
+            flash('Postal code must be in digits!', category='error')
+        else:
+            new_address = Address(loc_number = house_no, street_name=street, barangay=barangay, city=city, province=province, postal_code=postal_code)
+
+            db.session.add(new_address)
+            db.session.commit()
+            
+            address_id = new_address.id
+
+            if gender=='1':
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact_number=contact, is_male=True, email_address=email,
+                                date_of_birth=birth_date,address_id=address_id)
+            else:
+                new_person = Person(first_name=first_name, last_name=last_name, name_append=suffix, contact_number=contact, is_male=False,email_address=email,
+                                date_of_birth=birth_date,address_id=address_id)
+            
+            db.session.add(new_person)
+            db.session.commit()
+
+            person_id  = new_person.id
+
+            client_id = f"CWRL000{person_id}"
+
+            new_client= Client(id=person_id,client_id=client_id)
+
+            db.session.add(new_client)
+            db.session.commit()
+            
+            return redirect(url_for('views.clients'))
+    return render_template('clients.html')

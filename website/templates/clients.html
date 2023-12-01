@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Clients | Wizard Realty</title>
+    
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/sign-in/"
+    />
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="{{ url_for('static', filename='css/register.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="px-3 py-2 text-bg-light border-bottom">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          >
+            <a
+              href=""
+              class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+            >
+            <img src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png') }}" alt="logo" width="40" height="32">
+            </a>
+
+            <ul
+              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+            >
+              <li>
+                <a href="#" class="nav-link text-indigo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                    </svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-indigo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-arms-up" viewBox="0 0 16 16">
+                        <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                        <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.492 1.492 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.72.72 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.72.72 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
+                      </svg>
+                Clients
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>          
+                  User
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 py-2 bg-light">
+        <div class="container d-flex border-bottom flex-wrap justify-content-between">
+                <p class="fs-4 mt-1"><strong>Clients</strong></p>
+                    <div class="d-flex">
+                    <form
+                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4 mt-1"
+                        role="search"
+                    >
+                        <input
+                        type="search"
+                        class="form-control"
+                        id="search"
+                        name="search"
+                        placeholder="Search..."
+                        aria-label="Search"
+                        />
+                    </form>
+                </div>
+            </div>
+          </div>
+          <div class="px-3 py-2 bg-light">
+          <div class="container d-flex flex-wrap justify-content-between">
+            <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#addPropertyModal">Add Client</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+        <table class="table table-striped table-hover mx-auto" style = "max-width: 800px;">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Client ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>23112673</td>
+                <td>Din</td>
+                <td>Palautog</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>123131</td>
+                <td>Troy</td>
+                <td>Daddy</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>1312321</td>
+                <td>Clint</td>
+                <td>Macho</td>
+              </tr>
+            </tbody>
+          </table>
+
+      <!-- Client Modal -->
+      <div class="modal fade" id="addPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content form-signin w-100 m-auto border bg-white"
+          style="border-radius: 15px">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Add Client</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate method="POST">
+                    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+                    messages %} {% for category, message in messages %} {% if category ==
+                    'error' %}
+                    <div
+                      class="alert alert-danger alert-dismissible fade show"
+                      role="alert"
+                    >
+                      {{ message }}
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    {% else %}
+                    <div
+                      class="alert alert-success alert-dismissible fade show"
+                      role="alert"
+                    >
+                      {{ message }}
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    {% endif %} {% endfor %} {% endif %} {% endwith %}
+                    <div class="row g-3">
+                      <div class="col-md">
+                        <div class="form-floating custom-form">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="First Name"
+                            required
+                          />
+                          <label for="floatingInputGrid">First Name</label>
+                          <div class="invalid-feedback">
+                            First Name must be more than 2 characters.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="form-floating custom-form">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Last Name"
+                            required
+                          />
+                          <label for="floatingInputGrid">Last Name</label>
+                          <div class="invalid-feedback">
+                            Last Name must be more than 2 characters.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                          id="employeeType"
+                          name="employeeType"
+                        >
+                          <option selected disabled value>Suffix</option>
+                          <option value="II">II</option>
+                          <option value="III">III</option>
+                          <option value="IV">IV</option>
+                          <option value="Sr">Sr.</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col-md-3">
+                        <select
+                          class="form-select"
+                          aria-label="Default select example"
+                          id="gender"
+                          name="gender"
+                          required
+                        >
+                          <option selected>Gender</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                          <option value="3">Others</option>
+                        </select>
+                        <div class="invalid-feedback">Select a value.</div>
+                      </div>
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="phoneNo"
+                            name="phoneNo"
+                            placeholder="Phone Number (+63)"
+                            required
+                          />
+                          <label for="floatingInput">Phone Number (+63) </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="name@example.com"
+                        required
+                      />
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                      <input
+                        id="birthDate"
+                        name="birthDate"
+                        class="form-control"
+                        type="date"
+                        required
+                      />
+                      <span id="dateSelected"></span>
+                      <label for="birthDate">Date of Birth</label>
+                    </div>
+                    <h3 class="h5 mb-2 fw-bold">Address</h3>
+                    <div class="row g-2">
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="houseNo"
+                            name="houseNo"
+                            placeholder="House/Building Number"
+                            required
+                          />
+                          <label for="floatingInput">House/Building Number </label>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="street"
+                            name="street"
+                            placeholder="Street"
+                            required
+                          />
+                          <label for="floatingInputGrid">Street</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="barangay"
+                            name="barangay"
+                            placeholder="Barangay"
+                            required
+                          />
+                          <label for="floatingInputGrid">Barangay</label>
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="city"
+                            name="city"
+                            placeholder="City"
+                            required
+                          />
+                          <label for="floatingInputGrid">City</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col-md">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="province"
+                            name="province"
+                            placeholder="Province"
+                            required
+                          />
+                          <label for="floatingInputGrid">Province</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="postalCode"
+                            name="postalCode"
+                            placeholder="Postal Code"
+                            required
+                          />
+                          <label for="floatingInputGrid">Postal Code</label>
+                        </div>
+                      </div>
+                    </div>            
+                    <button class="btn btn-primary w-100 py-2 data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"" type="submit">
+                      Register
+                    </button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Edit Property Modal-->
+      {% for property in properties%}
+      {% for address in addresses %}
+        <div class="modal fade" id="myModal{{ property.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Edit Property</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="" >
+                    <div class="mb-3">
+                      <label for="propertyName" class="col-form-label">Property Name:</label>
+                      <input type="text" class="form-control" id="propertyName" value={{property.name}}>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyAddress" class="col-form-label">Location Number:</label>
+                      <input type="text" class="form-control" id="propertyAddress" value={{address.loc_number}}>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Street Name:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.street_name}}>
+                      </div>
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Barangay:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.barangay}}>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyAddress" class="col-form-label">City:</label>
+                      <input type="text" class="form-control" id="propertyAddress" value={{address.city}}>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Province:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.province}}>
+                      </div>
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Postal Code:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.postal_code}}>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyStatus" class="col-form-label">Status:</label>
+                      <select class="select-form" id="" aria-label="statusSelect">
+                        <option selected>Available</option>
+                        <option value="1">Unavailable</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyImage" class="col-form-label">Insert property image:</label>
+                      <input class="form-control" id="propertyImage" type="file">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                      <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+      {% endfor %}
+    </main>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // Select the form inside the modal when the modal is shown
+    $('#addPropertyModal').on('shown.bs.modal', function () {
+      var form = document.querySelector("#addPropertyModal form");
+
+      form.addEventListener("submit", function (event) {
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var gender = document.getElementById("gender");
+
+        // Validate first name length
+        if (firstName.value.length < 2) {
+          firstName.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          firstName.classList.remove("is-invalid");
+        }
+
+        // Validate last name length
+        if (lastName.value.length < 2) {
+          lastName.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          lastName.classList.remove("is-invalid");
+        }
+
+        // Validate gender selection
+        if (gender.value == "Gender") {
+          gender.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          gender.classList.remove("is-invalid");
+        }
+      });
+
+      // Add event listeners for input and select elements to remove "is-invalid" on change
+      var inputs = document.querySelectorAll("#addPropertyModal input");
+      var selects = document.querySelectorAll("#addPropertyModal select");
+
+      inputs.forEach(function (input) {
+        input.addEventListener("input", function () {
+          this.classList.remove("is-invalid");
+        });
+      });
+
+      selects.forEach(function (select) {
+        select.addEventListener("change", function () {
+          this.classList.remove("is-invalid");
+        });
+      });
+    });
+  });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#search').on('input', function () {
+            var query = $(this).val();
+
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    var properties = response.properties;
+                    var propertyHtml = '';
+
+                    for (var i = 0; i < properties.length; i++) { 
+                        propertyHtml += '<div class="album py-2 bg-body-tertiary">';
+                        propertyHtml += '<div class="container">';
+                        propertyHtml += '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
+                        propertyHtml += '<div class="col">';
+                        propertyHtml += '<div class="card shadow-sm">';
+                        // Add your property HTML structure here based on the response
+                        //propertyHtml += '<img class="bd-placeholder-img card-img-top"' //add picture here based on db file 
+                        propertyHtml += '<div class="card-body">';
+                        propertyHtml += '<h2 class="card-title">' + properties[i].name + '</h2>';
+                        propertyHtml += '<p class="card-text"><strong>Seller: </strong>' + properties[i].seller + '</p>';
+                        propertyHtml += '<div class="d-flex justify-content-between align-items-center">';
+                        propertyHtml += '<div class="btn-group">';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '<small class="text-body-secondary">Status: ';
+                        if (properties[i].is_available) {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-success">Available</span>';
+                        } else {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-danger">Unavailable</span>';
+                        }
+                        propertyHtml += '</small>';
+
+                        // Adjust the rest of the HTML structure as needed
+                        
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        
+                    }
+
+                    $('.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3').html(propertyHtml);
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+  </body>
+</html>
