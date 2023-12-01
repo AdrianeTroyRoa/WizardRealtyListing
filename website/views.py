@@ -65,7 +65,7 @@ def home():
 @login_required
 def search():
     query = request.args.get('query', '')
-    properties = Property.query.filter(Property.name.ilike(f"%{query}%")).all()
+    properties = Property.query.filter(Property.name.ilike(f"%{query}%")).order_by(Property.id.desc()).all()
 
     property_list = []
     for property in properties:
