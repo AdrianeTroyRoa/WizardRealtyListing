@@ -94,7 +94,7 @@
                 {% for property in properties %}
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="" id="image">
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225" alt="" id="image">
                         <div class="card-body">
                             <h2 class="card-title">{{ property.name }}</h2>
                             <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
