@@ -217,9 +217,7 @@
               <option value="2">Female</option>
               <option value="3">Others</option>
             </select>
-            <div class="invalid-feedback">
-              Select a value.
-            </div>
+            <div class="invalid-feedback">Select a value.</div>
           </div>
           <div class="col-md">
             <div class="form-floating">
@@ -406,44 +404,40 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var form = document.querySelector('form');
-    
-        form.addEventListener('submit', function (event) {
-          var firstName = document.getElementById('firstName');
-          var lasttName = document.getElementById('lastName');
-          var gender = document.getElementById('gender');
-    
+      document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+          var firstName = document.getElementById("firstName");
+          var lasttName = document.getElementById("lastName");
+          var gender = document.getElementById("gender");
+
           // Validate phone number length
-          if (firstName.value.length <2) {
-            firstName.classList.add('is-invalid');
+          if (firstName.value.length < 2) {
+            firstName.classList.add("is-invalid");
             event.preventDefault(); // Prevent the form submission
-          } 
-          else if(lastName.value.length<2){
-            lasttName.classList.add('is-invalid');
+          } else if (lastName.value.length < 2) {
+            lasttName.classList.add("is-invalid");
+            event.preventDefault();
+          } else if (gender.value == "Gender") {
+            gender.classList.add("is-invalid");
             event.preventDefault();
           }
-          else if(gender.value=='Gender'){
-            gender.classList.add('is-invalid');
-            event.preventDefault();
-          }
         });
-        
-        var firstNameInput = document.getElementById('firstName');
-        firstNameInput.addEventListener('input', function () {
-          firstNameInput.classList.remove('is-invalid');
+
+        var firstNameInput = document.getElementById("firstName");
+        firstNameInput.addEventListener("input", function () {
+          firstNameInput.classList.remove("is-invalid");
         });
-        var lastNameInput = document.getElementById('lastName');
-        lastNameInput.addEventListener('input', function () {
-          lastNameInput.classList.remove('is-invalid');
+        var lastNameInput = document.getElementById("lastName");
+        lastNameInput.addEventListener("input", function () {
+          lastNameInput.classList.remove("is-invalid");
         });
-        var genderSelect = document.getElementById('gender');
-        genderSelect.addEventListener('change', function () {
-          genderSelect.classList.remove('is-invalid');
+        var genderSelect = document.getElementById("gender");
+        genderSelect.addEventListener("change", function () {
+          genderSelect.classList.remove("is-invalid");
         });
       });
     </script>
   </body>
 </html>
-
-

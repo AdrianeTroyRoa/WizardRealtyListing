@@ -57,36 +57,43 @@
           </div>
         </div>
       </div>
-      <div class="px-3 py-2 border-bottom bg-light">
-        <div class="container d-flex flex-wrap justify-content-between">
-                <p class="fs-4">Property List</p>
+      <div class="px-3 py-2 bg-light">
+        <div class="container d-flex border-bottom flex-wrap justify-content-between">
+                <p class="fs-4 mt-1"><strong>Property List</strong></p>
                     <div class="d-flex">
                     <form
-                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4"
+                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4 mt-1"
                         role="search"
                     >
                         <input
                         type="search"
                         class="form-control"
+                        id="search"
+                        name="search"
                         placeholder="Search..."
                         aria-label="Search"
                         />
                     </form>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPropertyModal">Add Property</button>
                 </div>
             </div>
+          </div>
+          <div class="px-3 py-2 bg-light">
+          <div class="container d-flex flex-wrap justify-content-between">
+            <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#addPropertyModal">Add Property</button>
+          </div>
+        </div>
       </div>
     </header>
     <main>
 
         <!--Property List-->
-      <div class="album py-5 bg-body-tertiary">
+      <div class="album py-2 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {% for property in properties %}
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="">
+                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="" id="image">
                         <div class="card-body">
                             <h2 class="card-title">{{ property.name }}</h2>
                             <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
@@ -321,5 +328,65 @@
       crossorigin="anonymous"
     ></script>
     <script src="index.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#search').on('input', function () {
+            var query = $(this).val();
+
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    var properties = response.properties;
+                    var propertyHtml = '';
+
+                    for (var i = 0; i < properties.length; i++) { 
+                        propertyHtml += '<div class="album py-2 bg-body-tertiary">';
+                        propertyHtml += '<div class="container">';
+                        propertyHtml += '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
+                        propertyHtml += '<div class="col">';
+                        propertyHtml += '<div class="card shadow-sm">';
+                        // Add your property HTML structure here based on the response
+                        //propertyHtml += '<img class="bd-placeholder-img card-img-top"' //add picture here based on db file 
+                        propertyHtml += '<div class="card-body">';
+                        propertyHtml += '<h2 class="card-title">' + properties[i].name + '</h2>';
+                        propertyHtml += '<p class="card-text"><strong>Seller: </strong>' + properties[i].seller + '</p>';
+                        propertyHtml += '<div class="d-flex justify-content-between align-items-center">';
+                        propertyHtml += '<div class="btn-group">';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '<small class="text-body-secondary">Status: ';
+                        if (properties[i].is_available) {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-success">Available</span>';
+                        } else {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-danger">Unavailable</span>';
+                        }
+                        propertyHtml += '</small>';
+
+                        // Adjust the rest of the HTML structure as needed
+                        
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        
+                    }
+
+                    $('.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3').html(propertyHtml);
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
+</script>
   </body>
 </html>
