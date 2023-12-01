@@ -1,4 +1,4 @@
-from website.models import Person, Employee, Employee_Client_Assignment, Property, Address
+from website.models import Person, Employee, Client, Property, Address
 from website import db, create_app
 
 app = create_app()

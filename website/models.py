@@ -23,10 +23,10 @@ class Employee(db.Model, UserMixin):
     password = db.Column(db.String(200), nullable=False)
     is_senior = db.Column(db.Boolean)
 
-class Employee_Client_Assignment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
-    client_id = db.Column(db.Integer, db.ForeignKey('person.id'), unique=True)
+class Client(db.Model):
+    id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
+    client_id = db.Column(db.String(12), unique=True)
+    property_assoc = db.relationship('Property')
 
 class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,6 +35,7 @@ class Property(db.Model):
     date_listing = db.Column(db.DateTime(timezone=True), default=func.now())
     is_available = db.Column(db.Boolean)
     addr = db.Column(db.Integer, db.ForeignKey('address.id'), unique=True)
+    client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
 
 class Address(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
