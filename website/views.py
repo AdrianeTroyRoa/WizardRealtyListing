@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from . import db
 from werkzeug.utils import secure_filename
 from .models import Property, Address
+from werkzeug.utils import secure_filename
 
 views = Blueprint('views', __name__)
 
@@ -26,7 +27,6 @@ def home():
         property_pcode = request.form.get('propertyPost')
         property_status = request.form.get('propertyStat')
 
-        print(property_status)
         new_address = Address(loc_number = property_locnum, street_name= property_street, barangay=property_brgy, city=property_city, province=property_province, postal_code=property_pcode)
         
         db.session.add(new_address)
@@ -42,7 +42,6 @@ def home():
 
         db.session.add(new_property)
         db.session.commit()
-            
 
         if 'file' not in request.files:
             return "no image detected"
