@@ -197,47 +197,47 @@
               <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" action="/addproperty">
                 <div class="mb-2">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="propertyName" name="propertyName">
+                    <input type="text" class="form-control" id="propertyName" name="propertyName" placeholder="Property Name">
                     <label for="propertyName">Property Name</label>
                   </div>
                 </div>
                 <div class="mb-2">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="propertyAddress" name="propertyLoc">
-                    <label for="floatingInputGrid">Location Number</label>
+                    <input type="text" class="form-control" id="propertyAddress" name="propertyLoc" placeholder="House/Building Number">
+                    <label for="floatingInputGrid">House/Building Number</label>
                   </div>
                 </div>
-                <div class="row mb-2">
-                  <div class="col">
+                <div class="row g-2">
+                  <div class="col-md">
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="propertySeller" name="propertySt">
-                      <label for="propertySeller" class="col-form-label">Street Name</label>
+                      <input type="text" class="form-control" id="propertyStreet" name="propertyStreet" placeholder="Street">
+                      <label for="propertySeller" class="col-form-label">Street</label>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-md">
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="propertySeller" name="propertyBrgy">
-                      <label for="propertySeller" class="col-form-label">Barangay</label>
+                      <input type="text" class="form-control" id="propertyBrngy" name="propertyBrgy" placeholder="Barangay">
+                      <label for="propertySeller" class="col-form-label">Barangay</label> 
                     </div>
                   </div>
                 </div>
                 <div class="mb-2">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="propertyAddress" name="propertyCity">
-                    <label for="propertyAddress" class="col-form-label">City</label>
+                    <input type="text" class="form-control" id="propertyCity" name="propertyCity" placeholder="City">
+                    <label for="propertyAddress">City</label>
                   </div>
                 </div>
-                <div class="row mb-2">
-                  <div class="col">
+                <div class="row g-2">
+                  <div class="col-md">
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="propertySeller" name="propertyProv">
+                      <input type="text" class="form-control" id="propertyProv" name="propertyProv" placeholder="Province">
                       <label for="propertySeller" class="col-form-label">Province</label>
                     </div>
                   </div>
-                  <div class="col">
+                  <div class="col-md">
                     <div class="form-floating">
-                      <input type="text" class="form-control" id="propertySeller" name="propertyPost">
-                      <label for="propertySeller" class="col-form-label">Postal Code</label>
+                      <input type="text" class="form-control" id="propertyPostal" name="propertyPostal" placeholder="Postal Code">
+                      <label for="propertySeller">Postal Code</label>
                     </div>
                   </div>
                 </div>
@@ -258,11 +258,11 @@
                   <label for="propertyStatus" class="col-form-label">Status:</label>
                   <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
                     <option selected>Available</option>
-                    <option>Unavailable</option>
+                    <option>Unavailable</opti
                   </select>
                 </div>
                 <div class="mb-2">
-                  <label for="propertyImage" class="col-form-label">Insert property image</label>
+                  <label for="propertyImage" class="col-form-label">Insert property image:</label>
                   <input class="form-control" id="propertyImage" type="file" name="file">
                 </div>
                 <div class="modal-footer">

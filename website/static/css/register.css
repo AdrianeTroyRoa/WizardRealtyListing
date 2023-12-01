@@ -27,11 +27,19 @@ body {
   margin-bottom: 15px;
 }
 
-.form-signin input[placeholder="Postal Code"]{
+.form-signin input[id="postalCode"]{
   margin-bottom: 20px;
 }
 
 .form-signin select[name="gender"]{
+  height:58px;
+}
+
+.form-signin select[name="propertyType"]{
+  height:58px;
+}
+
+.form-signin select[name="availability"]{
   height:58px;
 }
 
