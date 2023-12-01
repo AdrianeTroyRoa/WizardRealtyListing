@@ -1,9 +1,17 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from . import db
+from werkzeug.utils import secure_filename
 from .models import Property, Address
 
 views = Blueprint('views', __name__)
+
+UPLOAD_FOLDER = 'website/static/images/property_imgs/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @views.route('/',methods=['GET','POST'])
 @login_required
@@ -34,9 +42,22 @@ def home():
 
         db.session.add(new_property)
         db.session.commit()
+            
+
+        if 'file' not in request.files:
+            return "no image detected"
+        
+        file = request.files['file']
+        
+        if file.filename == '':
+            return "empty file name of image"
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(UPLOAD_FOLDER+filename)
         
         return redirect(url_for('views.home'))
 
-    properties = Property.query.all()
+    properties = Property.query.order_by(Property.id.desc()).all()
 
     return render_template('index.html', properties=properties)

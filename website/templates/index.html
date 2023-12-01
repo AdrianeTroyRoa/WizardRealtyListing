@@ -196,7 +196,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form method="POST">
+              <form method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="propertyName" class="col-form-label">Property Name:</label>
                   <input type="text" class="form-control" id="propertyName" name="propertyName">
@@ -238,7 +238,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="propertyImage" class="col-form-label">Insert property image:</label>
-                  <input class="form-control" id="propertyImage" type="file">
+                  <input class="form-control" id="propertyImage" type="file" name="file">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
