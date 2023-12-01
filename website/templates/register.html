@@ -117,7 +117,7 @@
       class="form-signin w-100 m-auto border bg-white"
       style="border-radius: 15px"
     >
-      <form class="needs-validation" method="POST">
+      <form class="needs-validation" novalidate id="validation" method="POST">
         <img
           class="mb-4"
           src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png')}}"
@@ -416,27 +416,32 @@
           if (firstName.value.length < 2) {
             firstName.classList.add("is-invalid");
             event.preventDefault(); // Prevent the form submission
-          } else if (lastName.value.length < 2) {
-            lasttName.classList.add("is-invalid");
+          } 
+          if (lastName.value.length < 2) {
+            lastName.classList.add("is-invalid");
             event.preventDefault();
-          } else if (gender.value == "Gender") {
+          }
+          if (gender.value == "Gender") {
             gender.classList.add("is-invalid");
             event.preventDefault();
           }
         });
 
-        var firstNameInput = document.getElementById("firstName");
-        firstNameInput.addEventListener("input", function () {
-          firstNameInput.classList.remove("is-invalid");
+        var input = document.querySelectorAll(".form-floating input");
+        var select = document.querySelectorAll(".form-select");
+
+        inputs.forEach(function (input) {
+          input.addEventListener("input", function () {
+            this.classList.remove("is-invalid");
+          });
         });
-        var lastNameInput = document.getElementById("lastName");
-        lastNameInput.addEventListener("input", function () {
-          lastNameInput.classList.remove("is-invalid");
+
+        selects.forEach(function (select) {
+          select.addEventListener("change", function () {
+            this.classList.remove("is-invalid");
+          });
         });
-        var genderSelect = document.getElementById("gender");
-        genderSelect.addEventListener("change", function () {
-          genderSelect.classList.remove("is-invalid");
-        });
+
       });
     </script>
   </body>
