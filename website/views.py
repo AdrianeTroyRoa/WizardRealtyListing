@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from . import db
 from .models import Property, Address
@@ -52,3 +52,20 @@ def home():
 
     properties = Property.query.all()
     return render_template('index.html', properties=properties)
+
+@views.route('/search', methods=['GET'])
+@login_required
+def search():
+    query = request.args.get('query', '')
+    properties = Property.query.filter(Property.name.ilike(f"%{query}%")).all()
+
+    property_list = []
+    for property in properties:
+        property_list.append({
+
+            'name': property.name,
+            'seller': 'Din Shane Magallanes', #will change if connected to db
+            'is_available': property.is_available,
+        })
+
+    return jsonify({'properties': property_list})
