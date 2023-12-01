@@ -194,7 +194,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body form-signin">
-              <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+              <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" action="/addproperty">
                 <div class="mb-2">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="propertyName" name="propertyName" placeholder="Property Name">
@@ -243,22 +243,22 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="propertyClient" name="propertyClient" placeholder="Client ID">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyCD">
                     <label for="propertySeller" class="col-form-label">Client ID</label>
                   </div>
                 </div>
                 <div class="mb-2">
-                  <select class="form-select" id="propertyType" aria-label="statusSelect" name="propertyType">
-                    <option selected>Property Type</option>
-                    <option value="For Sale">For Sale</option>
-                    <option value="Rent">Rent</option>
+                  <label for="propertyStatus" class="col-form-label">Property Type:</label>
+                  <select class="select-form" id="" aria-label="statusSelect" name="propertyType">
+                    <option selected>Rent</option>
+                    <option>For Sale</option>
                   </select>
                 </div>
                 <div class="mb-2">
-                  <select class="form-select" id="availability" aria-label="statusSelect" name="availability">
-                    <option selected>Availability</option>
-                    <option value="Available">Available</option>
-                    <option value="Unavailable">Unavailable</option>
+                  <label for="propertyStatus" class="col-form-label">Status:</label>
+                  <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
+                    <option selected>Available</option>
+                    <option>Unavailable</opti
                   </select>
                 </div>
                 <div class="mb-2">
