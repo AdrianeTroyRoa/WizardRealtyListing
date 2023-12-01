@@ -145,8 +145,8 @@ def clients():
 
     list_client = []
 
-    for client in client:
-        list_client.append(client.id)
+    for clients in client:
+        list_client.append(clients.id)
 
     clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
 
