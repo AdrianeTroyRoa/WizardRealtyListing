@@ -22,12 +22,14 @@ def home():
     if request.method=='POST':
         property_name = request.form.get('propertyName')
         property_locnum = request.form.get('propertyLoc')
-        property_street = request.form.get('propertySt')
+        property_street = request.form.get('propertyStreet')
         property_brgy = request.form.get('propertyBrgy')
         property_city = request.form.get('propertyCity')
         property_province = request.form.get('propertyProv')
-        property_pcode = request.form.get('propertyPost')
-        property_status = request.form.get('propertyStat')
+        property_pcode = request.form.get('propertyPostal')
+        property_status = request.form.get('availability')
+        property_type = request.form.get('propertyType')
+        client_id=request.form.get('propertyClient')
 
         new_address = Address(loc_number = property_locnum, street_name= property_street, barangay=property_brgy, city=property_city, province=property_province, postal_code=property_pcode)
         
@@ -49,9 +51,9 @@ def home():
             filename = secure_filename(file.filename)
             file.save(UPLOAD_FOLDER+filename)
             if(property_status == "Available"):
-                new_property = Property(name=property_name, property_type="estate", is_available=True, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, property_type=property_type, is_available=True, addr=address_id, bg_image=filename)
             else:
-                new_property = Property(name=property_name, property_type="estate", is_available=False, addr=address_id, bg_image=filename)
+                new_property = Property(name=property_name, property_type=property_type, is_available=False, addr=address_id, bg_image=filename)
 
 
             db.session.add(new_property)
