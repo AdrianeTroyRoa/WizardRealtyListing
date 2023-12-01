@@ -14,6 +14,7 @@ class Person(db.Model):
     is_male = db.Column(db.Boolean)
     address_id = db.Column(db.Integer, db.ForeignKey('address.id'), unique=True)
     employee = db.relationship('Employee')
+    client= db.relationship('Client', back_populates='person', uselist=False)
 
 class Employee(db.Model, UserMixin):
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
