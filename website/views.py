@@ -16,7 +16,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@views.route('/home',methods=['GET','POST'])
+@views.route('/',methods=['GET','POST'])
 @login_required
 def home():
     if request.method=='POST':
@@ -140,12 +140,12 @@ def clients():
             
             return redirect(url_for('views.clients'))
         
-        client = Client.query.order_by(Client.id.desc()).all()
-        list_client = []
+    ##    client = Client.query.order_by(Client.id.desc()).all()
+    ##    list_client = []
 
-        for client in client:
-            list_client.append(client.id)
+    ##    for client in client:
+    ##        list_client.append(client.id)
 
-    clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
+    #clients = Client.query.filter(Client.id.in_(list_client)).order_by(Client.id.desc()).all()
 
-    return render_template('clients.html', clients=clients, person=clients)
+    return render_template('clients.html')
