@@ -37,4 +37,6 @@ def home():
         
         return redirect(url_for('views.home'))
 
-    return render_template('index.html')
+    properties = Property.query.all()
+
+    return render_template('index.html', properties=properties)
