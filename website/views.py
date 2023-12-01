@@ -36,14 +36,6 @@ def home():
         
         address_id = new_address.id
 
-        if(property_status == "Available"):
-            new_property = Property(name=property_name, property_type="estate", is_available=True, addr=address_id)
-        else:
-            new_property = Property(name=property_name, property_type="estate", is_available=False, addr=address_id)
-
-
-        db.session.add(new_property)
-        db.session.commit()
 
         if 'file' not in request.files:
             return "no image detected"
@@ -56,6 +48,14 @@ def home():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(UPLOAD_FOLDER+filename)
+            if(property_status == "Available"):
+                new_property = Property(name=property_name, property_type="estate", is_available=True, addr=address_id, bg_image=filename)
+            else:
+                new_property = Property(name=property_name, property_type="estate", is_available=False, addr=address_id, bg_image=filename)
+
+
+            db.session.add(new_property)
+            db.session.commit()
         
         return redirect(url_for('views.home'))
 
