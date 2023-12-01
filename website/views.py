@@ -58,8 +58,14 @@ def home():
         return redirect(url_for('views.home'))
 
     properties = Property.query.order_by(Property.id.desc()).all()
+    list_addr = []
 
-    return render_template('index.html', properties=properties)
+    for property in properties:
+        list_addr.append(property.addr)
+
+    addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
+
+    return render_template('index.html', properties=properties, addresses=addresses)
 
 @views.route('/search', methods=['GET'])
 @login_required
