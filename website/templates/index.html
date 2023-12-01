@@ -83,6 +83,7 @@
       <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <!--Property List with edit ability-->
                 {% for property in properties %}
                 <div class="col">
                     <div class="card shadow-sm">
@@ -92,7 +93,7 @@
                             <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal{{ property.id }}">Edit</button>
                                   <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                               </div>
                             {% if property.is_available %}
@@ -253,67 +254,71 @@
       </div>
 
       <!-- Edit Property Modal-->
-      <div class="modal fade" id="editPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5">Edit Property</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form action="">
-                <div class="mb-3">
-                  <label for="propertyName" class="col-form-label">Property Name:</label>
-                  <input type="text" class="form-control" id="propertyName">
+      {% for property in properties%}
+      {% for address in addresses %}
+        <div class="modal fade" id="myModal{{ property.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Edit Property</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">Location Number:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
+                <div class="modal-body">
+                  <form action="">
+                    <div class="mb-3">
+                      <label for="propertyName" class="col-form-label">Property Name:</label>
+                      <input type="text" class="form-control" id="propertyName" value={{property.name}}>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyAddress" class="col-form-label">Location Number:</label>
+                      <input type="text" class="form-control" id="propertyAddress" value={{address.loc_number}}>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Street Name:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.street_name}}>
+                      </div>
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Barangay:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.barangay}}>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyAddress" class="col-form-label">City:</label>
+                      <input type="text" class="form-control" id="propertyAddress" value={{address.city}}>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Province:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.province}}>
+                      </div>
+                      <div class="col">
+                        <label for="propertySeller" class="col-form-label">Postal Code:</label>
+                        <input type="text" class="form-control" id="propertySeller" value={{address.postal_code}}>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyStatus" class="col-form-label">Status:</label>
+                      <select class="select-form" id="" aria-label="statusSelect">
+                        <option selected>Available</option>
+                        <option value="1">Unavailable</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="propertyImage" class="col-form-label">Insert property image:</label>
+                      <input class="form-control" id="propertyImage" type="file">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                      <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
                 </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Street Name:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Barangay:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyAddress" class="col-form-label">City:</label>
-                  <input type="text" class="form-control" id="propertyAddress">
-                </div>
-                <div class="row mb-3">
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Province:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                  <div class="col">
-                    <label for="propertySeller" class="col-form-label">Postal Code:</label>
-                    <input type="text" class="form-control" id="propertySeller">
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyStatus" class="col-form-label">Status:</label>
-                  <select class="select-form" id="" aria-label="statusSelect">
-                    <option selected>Available</option>
-                    <option value="1">Unavailable</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="propertyImage" class="col-form-label">Insert property image:</label>
-                  <input class="form-control" id="propertyImage" type="file">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                  <button type="button" class="btn btn-primary">Save</button>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+      {% endfor %}
+      {% endfor %}
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
