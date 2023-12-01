@@ -131,86 +131,6 @@
                 </div>
                 </div>
                 {% endfor %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/house.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Mansion de Randell</h2>
-                            <p class="card-text"><strong>Seller: </strong>Randell Cordova</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg') }}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Hacienda Roa</h2>
-                            <p class="card-text"><strong>Seller: </strong>Adriane Troy V. Roa</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Gamolo Modern House</h2>
-                            <p class="card-text"><strong>Seller: </strong>Clint Harvey Gamolo</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern2.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Golden Shine</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/modern3.jpg') }}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Din Europa</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
             </div>
           </div>
       </div>
@@ -391,13 +311,10 @@
                     var propertyHtml = '';
 
                     for (var i = 0; i < properties.length; i++) { 
-                        propertyHtml += '<div class="album py-2 bg-body-tertiary">';
-                        propertyHtml += '<div class="container">';
-                        propertyHtml += '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
                         propertyHtml += '<div class="col">';
                         propertyHtml += '<div class="card shadow-sm">';
-                        // Add your property HTML structure here based on the response
-                        //propertyHtml += '<img class="bd-placeholder-img card-img-top"' //add picture here based on db file 
+                        var imageUrl = '/static/images/property_imgs/' + properties[i].bg_image;
+                        propertyHtml += '<img class="bd-placeholder-img card-img-top" src="' + imageUrl + '" width="100%" height="225" alt="">';                       
                         propertyHtml += '<div class="card-body">';
                         propertyHtml += '<h2 class="card-title">' + properties[i].name + '</h2>';
                         propertyHtml += '<p class="card-text"><strong>Seller: </strong>' + properties[i].seller + '</p>';
@@ -415,10 +332,6 @@
                         propertyHtml += '</small>';
 
                         // Adjust the rest of the HTML structure as needed
-                        
-                        propertyHtml += '</div>';
-                        propertyHtml += '</div>';
-                        propertyHtml += '</div>';
                         propertyHtml += '</div>';
                         propertyHtml += '</div>';
                         propertyHtml += '</div>';

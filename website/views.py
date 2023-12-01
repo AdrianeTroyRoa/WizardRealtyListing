@@ -78,7 +78,7 @@ def search():
     property_list = []
     for property in properties:
         property_list.append({
-
+            'bg_image' : property.bg_image,
             'name': property.name,
             'seller': 'Din Shane Magallanes', #will change if connected to db
             'is_available': property.is_available
