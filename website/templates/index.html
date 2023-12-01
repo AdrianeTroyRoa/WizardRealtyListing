@@ -114,22 +114,6 @@
                 {% endfor %}
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/Din House.jpg')}}" width="100%" height="225" alt="">
-                        <div class="card-body">
-                            <h2 class="card-title">Din Estates</h2>
-                            <p class="card-text"><strong>Seller: </strong>Din Shane Magallanes</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                              </div>
-                            <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
                         <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/house.jpg')}}" width="100%" height="225" alt="">
                         <div class="card-body">
                             <h2 class="card-title">Mansion de Randell</h2>
@@ -221,7 +205,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form enctype="multipart/form-data" method="POST">
+              <form method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="propertyName" class="col-form-label">Property Name:</label>
                   <input type="text" class="form-control" id="propertyName" name="propertyName">
