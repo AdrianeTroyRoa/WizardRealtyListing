@@ -246,22 +246,22 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="propertySeller" name="propertyCD">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyCD" placeholder="Client ID">
                     <label for="propertySeller" class="col-form-label">Client ID</label>
                   </div>
                 </div>
                 <div class="mb-2">
-                  <label for="propertyStatus" class="col-form-label">Property Type:</label>
-                  <select class="select-form" id="" aria-label="statusSelect" name="propertyType">
-                    <option selected>Rent</option>
-                    <option>For Sale</option>
+                  <select class="form-select" id="" aria-label="statusSelect" name="propertyType" placeholder="Property Type" >
+                    <option selected>Property Type</option>
+                    <option value = "Rent">Rent</optio  n>
+                    <option value="For Sale">For Sale</option>
                   </select>
                 </div>
                 <div class="mb-2">
-                  <label for="propertyStatus" class="col-form-label">Status:</label>
-                  <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
-                    <option selected>Available</option>
-                    <option>Unavailable</opti
+                  <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" placeholder="Status">
+                    <option selected>Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</optiion>
                   </select>
                 </div>
                 <div class="mb-2">
@@ -302,7 +302,7 @@
                         <label for="propertyAddress" class="col-form-label">Location Number</label>
                       </div>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row g-2">
                       <div class="col">
                         <div class="form-floating">
                           <input type="text" class="form-control" id="propertySeller" value={{address.street_name}}>
@@ -322,7 +322,7 @@
                         <label for="propertyAddress" class="col-form-label">City</label>
                       </div>
                     </div>
-                    <div class="row mb-2">
+                    <div class="row g-2">
                       <div class="col">
                         <div class="form-floating">
                           <input type="text" class="form-control" id="propertySeller" value={{address.province}}>
@@ -338,22 +338,32 @@
                     </div>
                     <div class="col">
                       <div class="form-floating">
-                        <input type="text" class="form-control" id="propertySeller" name="propertyPost">
+                        <input type="text" class="form-control" id="propertySeller" name="propertyPost" value="{{property.client_id}}" disabled>
                         <label for="propertySeller" class="col-form-label">Client ID</label>
                       </div>
                     </div>
                     <div class="mb-2">
                       <label for="propertyStatus" class="col-form-label">Property Type:</label>
-                      <select class="select-form" id="" aria-label="statusSelect" name="propertyStat">
-                        <option selected>Rent</option>
-                        <option value="1">For Sale</option>
+                      <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" value="{{property.property_type}}">
+                        {% if property.property_type == "Rent" %}
+                            <option value="Rent" selected>Rent</option>
+                            <option value="For Sale">For Sale</option>
+                        {% else %}
+                            <option value="Rent">Rent</option>
+                            <option value="For Sale" selected>For Sale</option>
+                        {% endif %}
                       </select>
                     </div>
                     <div class="mb-2">
                       <label for="propertyStatus" class="col-form-label">Status</label>
-                      <select class="select-form" id="" aria-label="statusSelect">
-                        <option selected>Available</option>
-                        <option value="1">Unavailable</option>
+                      <select class="form-select" id="" aria-label="statusSelect">
+                        {% if property.is_available %}
+                            <option value="Available" selected>Available</option>
+                            <option value="Unavailable">Unavailable</option>
+                        {% else %}
+                            <option value="Available">Available</option>
+                            <option value="Unavailable" selected>Unavailable</option>
+                        {% endif %}
                       </select>
                     </div>
                     <div class="mb-2">
