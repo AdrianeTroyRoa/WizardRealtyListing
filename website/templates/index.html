@@ -289,7 +289,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="">
+                  <form action="" class="needs-validation" novalidate method="POST">
                     <div class="mb-2">
                       <div class="form-floating">
                         <input type="text" class="form-control" id="propertyName" value={{property.name}}>
@@ -367,7 +367,7 @@
                       </select>
                     </div>
                     <div class="mb-2">
-                      <label for="propertyImage" class="col-form-label">Insert property image</label>
+                      <label for="propertyImage" class="col-form-label">Property image</label>
                       <input class="form-control" id="propertyImage" type="file">
                     </div>
                     <div class="modal-footer">
