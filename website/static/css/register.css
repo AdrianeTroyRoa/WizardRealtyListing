@@ -39,7 +39,7 @@ body {
   height:58px;
 }
 
-.form-signin select[name="availability"]{
+.form-signin select[name="propertyStat"]{
   height:58px;
 }
 

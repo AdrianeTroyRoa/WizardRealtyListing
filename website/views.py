@@ -51,11 +51,11 @@ def addprop():
     if request.method=='POST':
         property_name = request.form.get('propertyName')
         property_locnum = request.form.get('propertyLoc')
-        property_street = request.form.get('propertySt')
+        property_street = request.form.get('propertyStreet')
         property_brgy = request.form.get('propertyBrgy')
         property_city = request.form.get('propertyCity')
         property_province = request.form.get('propertyProv')
-        property_pcode = request.form.get('propertyPost')
+        property_pcode = request.form.get('propertyPostal')
         property_status = request.form.get('propertyStat')
         property_client = request.form.get('propertyCD')
         property_type = request.form.get('propertyType')
