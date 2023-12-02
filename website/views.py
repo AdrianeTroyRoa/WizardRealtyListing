@@ -113,7 +113,8 @@ def search():
 @views.route('/delete')
 @login_required
 def delete():
-    property = Property.query.filter_by(id=id).delete()
+    property = Property.query.filter_by(id=id).first()
+    db.session.delete(property)
     db.session.commit()
     
     return redirect(url_for('views.home'))
