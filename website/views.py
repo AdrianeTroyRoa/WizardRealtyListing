@@ -42,7 +42,6 @@ def home():
         pass
 
     print(list_first, list_last)
-    #persons = Person.query.filter(Person.id.in_(list_cli)).order_by(Person.id.desc()).all()
     return render_template('index.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last)
 
 
@@ -109,6 +108,15 @@ def search():
         })
 
     return jsonify({'properties': property_list})
+
+
+@views.route('/delete')
+@login_required
+def delete():
+    property = Property.query.filter_by(id=id).delete()
+    db.session.commit()
+    
+    return redirect(url_for('views.home'))
 
 @views.route('/clients', methods=['GET', 'POST'])
 @login_required
