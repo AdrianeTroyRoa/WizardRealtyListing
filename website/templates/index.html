@@ -156,7 +156,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
                 Cancel
               </button>
-              <button type="button" onclick=invoke_delete({{property.id}}) class="btn btn-danger">
+              <button type="button" onclick="window.location.href='{{ url_for('views.delete', prop_id=property.id) }}';" class="btn btn-danger">
                 Delete
               </button>
             </div>
@@ -442,9 +442,6 @@
         });
     });
 
-    function invoke_delete(property_id){
-        window.location.href="{{ url_for('views.delete', id=property_id) }}"
-    }
 </script>
   </body>
 </html>

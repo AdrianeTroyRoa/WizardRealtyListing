@@ -110,10 +110,10 @@ def search():
     return jsonify({'properties': property_list})
 
 
-@views.route('/delete')
+@views.route('/delete/<int:prop_id>')
 @login_required
-def delete():
-    property = Property.query.filter_by(id=id).first()
+def delete(prop_id):
+    property = Property.query.filter_by(id=prop_id).first()
     db.session.delete(property)
     db.session.commit()
     
