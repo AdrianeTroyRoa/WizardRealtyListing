@@ -193,8 +193,8 @@
             <select
               class="form-select"
               aria-label="Default select example"
-              id="employeeType"
-              name="employeeType"
+              id="Suffic"
+              name="Suffix"
             >
               <option selected disabled value>Suffix</option>
               <option value="II">II</option>
@@ -231,6 +231,9 @@
                 required
               />
               <label for="floatingInput">Phone Number (+63) </label>
+              <div class="invalid-feedback">
+                Must be in 11 DIGITS only
+              </div>
             </div>
           </div>
         </div>
@@ -244,6 +247,9 @@
             required
           />
           <label for="floatingInput">Email address</label>
+          <div class="invalid-feedback">
+            Email should have @
+          </div>
         </div>
         <div class="form-floating">
           <input
@@ -255,6 +261,13 @@
             required
           />
           <label for="floatingPassword">Password</label>
+          <div class="invalid-feedback">
+            Password:
+            must contain number
+            must contain small and capital letter
+            must contain special characters
+            must be at least 8 length
+          </div>
         </div>
         <div class="form-floating">
           <input
@@ -266,6 +279,9 @@
             required
           />
           <label for="floatingPassword">Confirm password</label>
+          <div class="invalid-feedback">
+            Not the same password!
+          </div>
         </div>
         <div class="form-floating">
           <input
@@ -277,6 +293,9 @@
           />
           <span id="dateSelected"></span>
           <label for="birthDate">Date of Birth</label>
+          <div class="invalid-feedback">
+            Enter your Birthdate!
+          </div>
         </div>
         <h3 class="h5 mb-2 fw-bold">Address</h3>
         <div class="row g-2">
@@ -291,6 +310,9 @@
                 required
               />
               <label for="floatingInput">House/Building Number </label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
           <div class="col-md-5">
@@ -304,6 +326,9 @@
                 required
               />
               <label for="floatingInputGrid">Street</label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
         </div>
@@ -319,6 +344,9 @@
                 required
               />
               <label for="floatingInputGrid">Barangay</label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
           <div class="col-md">
@@ -332,6 +360,9 @@
                 required
               />
               <label for="floatingInputGrid">City</label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
         </div>
@@ -347,6 +378,9 @@
                 required
               />
               <label for="floatingInputGrid">Province</label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
           <div class="col-md-3">
@@ -360,6 +394,9 @@
                 required
               />
               <label for="floatingInputGrid">Postal Code</label>
+              <div class="invalid-feedback">
+                Enter an appropriate value
+              </div>
             </div>
           </div>
         </div>
@@ -368,7 +405,7 @@
           <div class="col-md">
             <div class="form-floating">
               <input
-                id="birthDate"
+                id="employmentDate"
                 name="employmentDate"
                 class="form-control"
                 type="date"
@@ -376,6 +413,9 @@
               />
               <span id="employmentDate"></span>
               <label for="birthDate">Date of Employment</label>
+              <div class="invalid-feedback">
+                Enter your date of employment!
+              </div>
             </div>
           </div>
           <div class="col-md">
@@ -390,6 +430,9 @@
               <option value="1">Junior</option>
               <option value="2">Senior</option>
             </select>
+            <div class="invalid-feedback">
+              Choose your employment status!
+            </div>
           </div>
         </div>
 
@@ -409,23 +452,149 @@
         var form = document.querySelector("form");
 
         form.addEventListener("submit", function (event) {
-          var firstName = document.getElementById("firstName");
-          var lasttName = document.getElementById("lastName");
-          var gender = document.getElementById("gender");
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var gender = document.getElementById("gender");
+        var phoneNo = document.getElementById("phoneNo");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var confirmPassword = document.getElementById("confirmPassword");
+        var birthDate = document.getElementById("birthDate");
+        var houseNo = document.getElementById("houseNo");
+        var street = document.getElementById("street");
+        var barangay = document.getElementById("barangay");
+        var city = document.getElementById("city");
+        var province = document.getElementById("province");
+        var postalCode = document.getElementById("postalCode");
+        var employeeType = document.getElementById("employeeType");
+        var employmentDate = document.getElementById("employmentDate");
 
-          // Validate phone number length
-          if (firstName.value.length < 2) {
-            firstName.classList.add("is-invalid");
-            event.preventDefault(); // Prevent the form submission
-          } 
-          if (lastName.value.length < 2) {
-            lastName.classList.add("is-invalid");
+        // Validate first name length
+        if (firstName.value.length < 2) {
+          firstName.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          firstName.classList.remove("is-invalid");
+        }
+
+        // Validate last name length
+        if (lastName.value.length < 2) {
+          lastName.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          lastName.classList.remove("is-invalid");
+        }
+
+        // Validate gender selection
+        if (gender.value == "Gender") {
+          gender.classList.add("is-invalid");
+          event.preventDefault(); // Prevent the form submission
+        } else {
+          gender.classList.remove("is-invalid");
+        }
+
+        var phoneNoRegex = /^\d+$/; // Regular expression to match only digits
+        if (phoneNo.value.length !== 11 || !phoneNoRegex.test(phoneNo.value)) {
+            phoneNo.classList.add("is-invalid");
             event.preventDefault();
-          }
-          if (gender.value == "Gender") {
-            gender.classList.add("is-invalid");
+        } else {
+            phoneNo.classList.remove("is-invalid");
+        }
+
+        if (email.value.length <= 5 || !email.value.includes("@")) {
+            email.classList.add("is-invalid");
             event.preventDefault();
-          }
+        } else {
+            email.classList.remove("is-invalid");
+        }
+
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/; // Regular expression for the password
+        if(!passwordRegex.test(password.value)){
+            password.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            password.classList.remove("is-invalid");
+        }
+
+        if(confirmPassword.value == password.value){
+          confirmPassword.classList.remove("is-invalid");
+          //event.preventDefault();
+        } else {
+            confirmPassword.classList.add("is-invalid");
+            event.preventDefault();
+        }
+
+        // Validate birth date
+        if (!birthDate.value) {
+            birthDate.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            birthDate.classList.remove("is-invalid");
+        }
+
+        // Validate house number
+        if (houseNo.value.length <= 2) {
+            houseNo.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            houseNo.classList.remove("is-invalid");
+        }
+
+        // Validate street
+        if (street.value.length <= 2) {
+            street.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            street.classList.remove("is-invalid");
+        }
+
+        // Validate barangay
+        if (barangay.value.length <= 2) {
+            barangay.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            barangay.classList.remove("is-invalid");
+        }
+
+        // Validate city
+        if (city.value.length <= 2) {
+            city.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            city.classList.remove("is-invalid");
+        }
+
+        // Validate province
+        if (province.value.length <= 2) {
+            province.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            province.classList.remove("is-invalid");
+        }
+
+        // Validate postal code
+        var postalCodeRegex = /^\d+$/;
+        if (postalCode.value.length === 0 || !postalCodeRegex.test(postalCode.value)) {
+            postalCode.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            postalCode.classList.remove("is-invalid");
+        }
+
+        if(!employmentDate.value) {
+            employmentDate.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            employmentDate.classList.remove("is-invalid")
+        }
+
+        if(employeeType.value == "Employment Status") {
+            employeeType.classList.add("is-invalid");
+            event.preventDefault();
+        } else {
+            employeeType.classList.remove("is-invalid");
+        }
+
         });
 
         var input = document.querySelectorAll(".form-floating input");
