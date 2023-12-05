@@ -22,8 +22,6 @@ def home():
     properties = Property.query.order_by(Property.id.desc()).all()
     list_addr = []
     list_cli = []
-    list_first = []
-    list_last = []
 
     for property in properties:
         list_addr.append(property.addr)
@@ -31,18 +29,8 @@ def home():
 
     addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
 
-    clients = Client.query.filter(Client.client_id.in_(list_cli)).order_by(Client.id.desc()).all()
-    try:
-        for i in list_cli:
-            person = Client.query.filter_by(client_id=i).first()
-            j = Person.query.filter_by(id=person.id).first()
-            list_first.append(j.first_name)
-            list_last.append(j.last_name)
-    except:
-        pass
 
-    print(list_first, list_last)
-    return render_template('index.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last, property_address=zip(properties,addresses))
+    return render_template('index.html', clients=clients, properties=properties, property_address=zip(properties,addresses), property_address_edit=zip(properties,addresses))
 
 
 @views.route('/addproperty',methods=['GET','POST'])
@@ -88,6 +76,42 @@ def addprop():
 
             db.session.add(new_property)
             db.session.commit()
+        
+        return redirect(url_for('views.home'))
+
+@views.route('/editproperty/<int:prop_id>',methods=['GET','POST'])
+@login_required
+def editprop(prop_id):
+    if request.method=='POST':
+        property_name = request.form.get('propertyName')
+        property_locnum = request.form.get('propertyLoc')
+        property_street = request.form.get('propertyStreet')
+        property_brgy = request.form.get('propertyBrgy')
+        property_city = request.form.get('propertyCity')
+        property_province = request.form.get('propertyProv')
+        property_pcode = request.form.get('propertyPostal')
+        property_status = request.form.get('propertyStat')
+        property_type = request.form.get('propertyType')
+
+        
+        property = Property.query.filter_by(id=prop_id).first()
+        property.name = property_name
+        property.property_type = property_type
+        property.is_available = property_status
+        if(property_status == "Available"):
+            property.is_available = True
+        else:
+            property.is_available = False
+
+        address = Address.query.filter_by(id=property.addr).first()
+        address.loc_number = property_locnum
+        address.street_name = property_street
+        address.barangay = property_brgy
+        address.city = property_city
+        address.province = property_province
+        address.postal_code = property_pcode
+
+        db.session.commit()
         
         return redirect(url_for('views.home'))
 
