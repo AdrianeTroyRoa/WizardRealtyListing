@@ -3,7 +3,7 @@ from flask import Blueprint, flash, render_template, request, redirect, url_for,
 from flask_login import login_required, current_user
 from . import db
 from werkzeug.utils import secure_filename
-from .models import Property, Address, Person, Client
+from .models import ClientLikesProperty, Property, Address, Person, Client
 from werkzeug.utils import secure_filename
 
 
@@ -32,6 +32,32 @@ def home():
 
     return render_template('index.html', clients=clients, properties=properties, property_address=zip(properties,addresses), property_address_edit=zip(properties,addresses))
 
+@views.route('/interested/<int:prop_id>',methods=['GET','POST'])
+@login_required
+def client_interest(prop_id):
+    if request.method=='POST':
+        client_id = request.form.get('client_id')
+        property = Property.query.filter_by(id=prop_id).first()
+        unique_ent = ClientLikesProperty.query.filter_by(property_id=prop_id).first()
+        
+        if unique_ent:
+            if unique_ent.client_id == client_id or property.client_id == client_id:
+                flash('Client already associated with the property', category='error')
+            else:
+                client_property = ClientLikesProperty(client_id=client_id, property_id=prop_id) 
+                db.session.add(client_property)
+                db.session.commit()
+                flash('Client enlisted the property as interest', category='success')
+        else:
+            if property.client_id == client_id:
+                flash('Client already associated with the property', category='error')
+            else:
+                client_property = ClientLikesProperty(client_id=client_id, property_id=prop_id) 
+                db.session.add(client_property)
+                db.session.commit()
+                flash('Client enlisted the property as interest', category='success')
+
+        return redirect(url_for('views.home'))
 
 @views.route('/addproperty',methods=['GET','POST'])
 @login_required
