@@ -26,9 +26,10 @@ class Employee(db.Model, UserMixin):
 class Client(db.Model):
     id = db.Column(db.Integer, db.ForeignKey('person.id'), primary_key=True)
     client_id = db.Column(db.String(12), unique=True)
-    property_assoc = db.relationship('Property')
+    property_assoc = db.relationship('Property', back_populates='client',uselist=False)
     person= db.relationship('Person', back_populates='client', uselist=False)
     interest_client = db.relationship('ClientLikesProperty')
+    
 
 class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,6 +39,7 @@ class Property(db.Model):
     is_available = db.Column(db.Boolean)
     addr = db.Column(db.Integer, db.ForeignKey('address.id'), unique=True)
     client_id = db.Column(db.String(12), db.ForeignKey('client.client_id'))
+    client=db.relationship('Client', back_populates='property', uselist=False)
     bg_image = db.Column(db.String(40))
     interest_client = db.relationship('ClientLikesProperty')
 
