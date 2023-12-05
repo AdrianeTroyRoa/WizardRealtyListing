@@ -104,40 +104,47 @@
     <main>
 
         <!--Property List-->
-      <div class="album py-2 bg-body-tertiary">
-        <div class="container">
+        <div class="album py-2 bg-body-tertiary">
+          <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <!--Property List with edit ability-->
-                {% for property in properties %}
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225" alt="{{property.bg_image}}" id="image">
-                        <div class="card-body">
-                            <h2 class="card-title">{{ property.name }}</h2>
-                            
-                                <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}} {{property.client.person.last_name}}</p>
-                           
-                                
-                          
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal{{ property.id }}">Edit</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#interestedPropertyModal">Interested</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delete{{ property.id }}">Delete</button>
-                              </div>
-                            {% if property.is_available %}
-                                <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-success">Available</span></small>
-                            {% else %}
-                                <small class="text-body-secondary">Status: <span class="badge rounded-pill text-bg-danger">Unavailable</span></small>
-                            {% endif %}
-                        </div>
+              <!--Property List with edit ability-->
+              {% for property in properties %}
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img class="bd-placeholder-img card-img-top"
+                    src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225"
+                    alt="{{property.bg_image}}" id="image">
+                  <div class="card-body">
+                    <h2 class="card-title">{{ property.name }}</h2>
+        
+                    <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}}
+                      {{property.client.person.last_name}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#myModal{{ property.id }}">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#interestedPropertyModal">Interested</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#delete{{ property.id }}">Delete</button>
+                      </div>
+                      {% if property.is_available %}
+                      <small class="text-body-secondary">Status: 
+                        <span class="badge rounded-pill text-bg-success">Available
+                        </span>
+                      </small>
+                      {% else %}
+                      <small class="text-body-secondary">Status: <span
+                          class="badge rounded-pill text-bg-danger">Unavailable</span></small>
+                      {% endif %}
                     </div>
+                  </div>
                 </div>
-                </div>
-                {% endfor %}
+              </div>
+              {% endfor %}
             </div>
           </div>
-      </div>
+        </div>
 
       <!-- Delete Property Modal-->
     {% for property in properties %}

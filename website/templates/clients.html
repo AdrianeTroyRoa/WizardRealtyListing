@@ -217,7 +217,10 @@
                 {% for client in clients %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
-                    <td>{{ client.client_id }}</td>
+                    <td>
+                      <a href="{{ url_for('views.interested') }}" style="text-decoration: none; color: inherit;">
+                        {{ client.client_id }}</td>
+                      </a>
                     <td>{{ client.person.first_name }}</td>
                     <td>{{ client.person.last_name }}</td>
                 </tr>
