@@ -44,7 +44,7 @@ def register():
     if request.method == 'POST':
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
-        suffix=request.form.get('suffix')
+        suffix=request.form.get('Suffix')
         contact = request.form.get('phoneNo')
         gender = request.form.get('gender')
         email = request.form.get('email')
