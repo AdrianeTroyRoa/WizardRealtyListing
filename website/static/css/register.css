@@ -47,6 +47,10 @@ body {
   height:58px;
 }
 
+.form-signin select[name="Suffix"]{
+  height:58px;
+}
+
 .custom-form{
   margin-right: -8px;
 }
