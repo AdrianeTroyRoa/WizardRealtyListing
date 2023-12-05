@@ -21,16 +21,14 @@ def allowed_file(filename):
 def home():
     properties = Property.query.order_by(Property.id.desc()).all()
     list_addr = []
-    list_cli = []
 
     for property in properties:
         list_addr.append(property.addr)
-        list_cli.append(property.client_id)
 
     addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
 
 
-    return render_template('index.html', clients=clients, properties=properties, property_address=zip(properties,addresses), property_address_edit=zip(properties,addresses))
+    return render_template('index.html', properties=properties, property_address=zip(properties,addresses), property_address_edit=zip(properties,addresses))
 
 @views.route('/interested/<int:prop_id>',methods=['GET','POST'])
 @login_required
@@ -38,19 +36,22 @@ def client_interest(prop_id):
     if request.method=='POST':
         client_id = request.form.get('client_id')
         property = Property.query.filter_by(id=prop_id).first()
-        unique_ent = ClientLikesProperty.query.filter_by(property_id=prop_id).first()
+        unique_ent = ClientLikesProperty.query.filter_by(property_id=prop_id).all()
+        client_ids = [result.client_id for result in unique_ent]
+
+        clients = Client.query.filter(Client.client_id==client_id).first()
         
         if unique_ent:
-            if unique_ent.client_id == client_id or property.client_id == client_id:
-                flash('Client already associated with the property', category='error')
+            if (client_id in client_ids or property.client_id == client_id or not client_id or not clients):
+                flash('Error: Client likely associated with the property or not found in database', category='error')
             else:
                 client_property = ClientLikesProperty(client_id=client_id, property_id=prop_id) 
                 db.session.add(client_property)
                 db.session.commit()
                 flash('Client enlisted the property as interest', category='success')
         else:
-            if property.client_id == client_id:
-                flash('Client already associated with the property', category='error')
+            if (property.client_id == client_id or not client_id or not clients):
+                flash('Error: Client likely associated with the property or not found in database', category='error')
             else:
                 client_property = ClientLikesProperty(client_id=client_id, property_id=prop_id) 
                 db.session.add(client_property)
@@ -141,6 +142,41 @@ def editprop(prop_id):
         
         return redirect(url_for('views.home'))
 
+@views.route('/editpropertyinclient/<int:prop_id>/<string:client_id>',methods=['GET','POST'])
+@login_required
+def editprop_in_client(prop_id, client_id):
+    if request.method=='POST':
+        property_name = request.form.get('propertyName')
+        property_locnum = request.form.get('propertyLoc')
+        property_street = request.form.get('propertyStreet')
+        property_brgy = request.form.get('propertyBrgy')
+        property_city = request.form.get('propertyCity')
+        property_province = request.form.get('propertyProv')
+        property_pcode = request.form.get('propertyPostal')
+        property_status = request.form.get('propertyStat')
+        property_type = request.form.get('propertyType')
+
+        
+        property = Property.query.filter_by(id=prop_id).first()
+        property.name = property_name
+        property.property_type = property_type
+        property.is_available = property_status
+        if(property_status == "Available"):
+            property.is_available = True
+        else:
+            property.is_available = False
+
+        address = Address.query.filter_by(id=property.addr).first()
+        address.loc_number = property_locnum
+        address.street_name = property_street
+        address.barangay = property_brgy
+        address.city = property_city
+        address.province = property_province
+        address.postal_code = property_pcode
+
+        db.session.commit()
+        
+        return redirect(url_for('views.interested', client_id=client_id))
 
 @views.route('/search', methods=['GET'])
 @login_required
@@ -169,6 +205,24 @@ def delete(prop_id):
     db.session.commit()
     
     return redirect(url_for('views.home'))
+
+@views.route('/deleteinclientview/<int:prop_id>/<string:client_id>')
+@login_required
+def delete_in_clientview(prop_id, client_id):
+    property = Property.query.filter_by(id=prop_id).first()
+    db.session.delete(property)
+    db.session.commit()
+    
+    return redirect(url_for('views.interested', client_id=client_id))
+
+@views.route('/deleteclientlikes/<int:prop_id>/<string:client_id>')
+@login_required
+def delete_client_interest(prop_id, client_id):
+    property = ClientLikesProperty.query.filter_by(property_id=prop_id).filter_by(client_id=client_id).first()
+    db.session.delete(property)
+    db.session.commit()
+    
+    return redirect(url_for('views.interested', client_id=client_id))
 
 @views.route('/clients', methods=['GET', 'POST'])
 @login_required
@@ -236,29 +290,27 @@ def clients():
 
     return render_template('clients.html',clients=clients)
 
-@views.route('/interested')
-def interested():
+
+
+@views.route('/interest_properties/<string:client_id>')
+def interested(client_id):
     properties = Property.query.order_by(Property.id.desc()).all()
+    properties_owned = Property.query.filter(Property.client_id==client_id).order_by(Property.id.desc()).all()
+    properties_interest_0 = ClientLikesProperty.query.filter(ClientLikesProperty.client_id==client_id).order_by(ClientLikesProperty.id.desc()).all()
     list_addr = []
-    list_cli = []
-    list_first = []
-    list_last = []
+    list_likes = []
+
+    for like in properties_interest_0:
+        list_likes.append(like.property_id)
 
     for property in properties:
         list_addr.append(property.addr)
-        list_cli.append(property.client_id)
+        prop = property
 
+    for property in properties_owned:
+        prop = property
+        break
+
+    properties_liked = Property.query.filter(Property.id.in_(list_likes)).order_by(Property.id.desc()).all()
     addresses = Address.query.filter(Address.id.in_(list_addr)).order_by(Address.id.desc()).all()
-
-    clients = Client.query.filter(Client.client_id.in_(list_cli)).order_by(Client.id.desc()).all()
-    try:
-        for i in list_cli:
-            person = Client.query.filter_by(client_id=i).first()
-            j = Person.query.filter_by(id=person.id).first()
-            list_first.append(j.first_name)
-            list_last.append(j.last_name)
-    except:
-        pass
-
-    print(list_first, list_last)
-    return render_template('interested.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last)
+    return render_template('interested.html', owner=prop, properties_owned=properties_owned, properties_liked=properties_liked, property_address=zip(properties,addresses), property_address_edit=zip(properties,addresses), client_id=client_id, properties=properties)
