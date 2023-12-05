@@ -114,11 +114,11 @@
                         <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225" alt="{{property.bg_image}}" id="image">
                         <div class="card-body">
                             <h2 class="card-title">{{ property.name }}</h2>
-                            {% if first[loop.index - 1] != null %}
-                                <p class="card-text"><strong>Seller: </strong>{{ first[loop.index - 1]~' '~last[loop.index - 1] }}</p>
-                            {% else %}
-                                <p class="card-text"><strong>Seller: </strong></p>
-                            {% endif %}
+                            
+                                <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}} {{property.client.person.last_name}}</p>
+                           
+                                
+                          
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal{{ property.id }}">Edit</button>
@@ -403,7 +403,7 @@
                 success: function (response) {
                     var properties = response.properties;
                     var propertyHtml = '';
-
+                    console.log(properties.client_id)
                     for (var i = 0; i < properties.length; i++) { 
                         propertyHtml += '<div class="col">';
                         propertyHtml += '<div class="card shadow-sm">';
@@ -414,8 +414,9 @@
                         propertyHtml += '<p class="card-text"><strong>Seller: </strong>' + properties[i].seller + '</p>';
                         propertyHtml += '<div class="d-flex justify-content-between align-items-center">';
                         propertyHtml += '<div class="btn-group">';
-                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editPropertyModal">Edit</button>';
-                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal' +properties[i].id+'">Edit</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#interestedPropertyModal">Interested</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delete' + properties[i].id + '">Delete</button>';
                         propertyHtml += '</div>';
                         propertyHtml += '<small class="text-body-secondary">Status: ';
                         if (properties[i].is_available) {
