@@ -42,7 +42,7 @@ def home():
         pass
 
     print(list_first, list_last)
-    return render_template('index.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last)
+    return render_template('index.html', properties=properties, addresses=addresses, clients=clients, first=list_first, last=list_last, property_address=zip(properties,addresses))
 
 
 @views.route('/addproperty',methods=['GET','POST'])
