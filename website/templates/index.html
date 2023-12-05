@@ -20,6 +20,21 @@
     />
   </head>
   <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %} {% if category ==
+      'error' %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+      </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
     <header>
       <div class="px-3 py-2 text-bg-light border-bottom">
         <div class="container">
@@ -120,7 +135,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myDetails{{property.id}}">Details</button>
-                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#interestedPropertyModal">Interested</button>
+                                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#interested{{property.id}}">Interested</button>
                                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delete{{ property.id }}">Delete</button>
                               </div>
                             {% if property.is_available %}
@@ -164,29 +179,33 @@
       {% endfor %}
 
       <!-- Interested Property Modal-->
-      <div class="modal fade" tabindex="-1" role="dialog" id="interestedPropertyModal">
+    {% for property in properties %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="interested{{property.id}}">
         <div class="modal-dialog" role="document" tabindex="-1">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Interested</h5>
             </div>
             <div class="modal-body">
-              <div class="form-floating">
-                <input type="text" class="form-control">
-                <label class="" for="">Client ID</label>
-              </div>
-            </div>
+                <form class="needs-validation" novalidate method="POST" action="/interested/{{property.id}}"> 
+                  <div class="form-floating">
+                    <input type="text" class="form-control" name="client_id">
+                    <label class="" for="">Client ID</label>
+                  </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
                 Cancel
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary">
                 Confirm
               </button>
+                </form>
+            </div>
             </div>
           </div>
         </div>
       </div>
+      {% endfor %}
 
       <!-- Add Property Modal -->
       <div class="modal fade" id="addPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
