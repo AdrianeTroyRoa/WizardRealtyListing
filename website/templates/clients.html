@@ -221,7 +221,7 @@
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>
-                      <a href="{{ url_for('views.interested') }}" style="text-decoration: none; color: inherit;">
+                      <a href="{{ url_for('views.interested', client_id=client.client_id) }}" style="text-decoration: none; color: inherit;">
                         {{ client.client_id }}</td>
                       </a>
                     <td>{{ client.person.first_name }}</td>
