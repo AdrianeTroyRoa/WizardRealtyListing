@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Wizard Realty</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="px-3 py-2 text-bg-light border-bottom">
+        <div class="container">
+          <div
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+          >
+            <a
+              href="{{url_for('views.home')}}"
+              class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+            >
+            <img src="{{ url_for('static', filename='images/Wizard_Realty_Logo.png') }}" alt="logo" width="40" height="32">
+            </a>
+
+            <ul
+              class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
+            >
+              <li>
+                <a href="{{url_for('views.home')}}" class="nav-link text-indigo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                    </svg>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="{{url_for('views.clients')}}" class="nav-link text-indigo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-arms-up" viewBox="0 0 16 16">
+                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                    <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.492 1.492 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.72.72 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.72.72 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
+                  </svg>
+                  Client
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>          
+                  User
+                </a>
+              </li>
+              <li>
+                  <a href="{{ url_for('auth.logout') }}" class="nav-link text-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi d-block mx-auto mb-1 bi-person-circle" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                    </svg>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 py-2 bg-light">
+        <div class="container d-flex border-bottom flex-wrap justify-content-between">
+                <p class="fs-4 mt-1"><strong>Property Owned</strong></p>
+                    <div class="d-flex">
+                    <form
+                        class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4 mt-1"
+                        role="search"
+                    >
+                        <input
+                        type="search"
+                        class="form-control"
+                        id="search"
+                        name="search"
+                        placeholder="Search..."
+                        aria-label="Search"
+                        />
+                    </form>
+                </div>
+            </div>
+          </div>
+    </header>
+    <main>
+        <!--Property List-->
+        <div class="album py-2 bg-body-tertiary">
+          <div class="container border-bottom">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <!--Property List with edit ability-->
+              {% for property in properties %}
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img class="bd-placeholder-img card-img-top"
+                    src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225"
+                    alt="{{property.bg_image}}" id="image">
+                  <div class="card-body">
+                    <h2 class="card-title">{{ property.name }}</h2>
+        
+                    <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}}
+                      {{property.client.person.last_name}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#myModal{{ property.id }}">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#interestedPropertyModal">Interested</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#delete{{ property.id }}">Delete</button>
+                      </div>
+                      {% if property.is_available %}
+                      <small class="text-body-secondary">Status: <span
+                          class="badge rounded-pill text-bg-success">Available</span></small>
+                      {% else %}
+                      <small class="text-body-secondary">Status: <span
+                          class="badge rounded-pill text-bg-danger">Unavailable</span></small>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Interested Property List-->
+        <div class="px-3 py-2 bg-light">
+          <div class="container d-flex border-bottom flex-wrap justify-content-between">
+                  <p class="fs-4 mt-1"><strong>Interested Properties</strong></p>
+                      <div class="d-flex">
+                      <form
+                          class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto ml-4 mt-1"
+                          role="search"
+                      >
+                          <input
+                          type="search"
+                          class="form-control"
+                          id="search"
+                          name="search"
+                          placeholder="Search..."
+                          aria-label="Search"
+                          />
+                      </form>
+                  </div>
+            </div>
+        </div>
+
+        <div class="album py-2 bg-body-tertiary">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <!--Property List with edit ability-->
+              {% for property in properties %}
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img class="bd-placeholder-img card-img-top"
+                    src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225"
+                    alt="{{property.bg_image}}" id="image">
+                  <div class="card-body">
+                    <h2 class="card-title">{{ property.name }}</h2>
+        
+                    <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}}
+                      {{property.client.person.last_name}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#myModal{{ property.id }}">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#interestedPropertyModal">Interested</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                          data-bs-target="#delete{{ property.id }}">Delete</button>
+                      </div>
+                      {% if property.is_available %}
+                      <small class="text-body-secondary">Status: <span
+                          class="badge rounded-pill text-bg-success">Available</span></small>
+                      {% else %}
+                      <small class="text-body-secondary">Status: <span
+                          class="badge rounded-pill text-bg-danger">Unavailable</span></small>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+      <!-- Delete Property Modal-->
+    {% for property in properties %}
+      <div class="modal fade" tabindex="-1" role="dialog" id="delete{{ property.id }}">
+        <div class="modal-dialog" role="document" tabindex="-1">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete confirmation</h5>
+            </div>
+            <div class="modal-body">
+              <p class="alert alert-danger">
+                Are you sure you want to delete this property?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+                Cancel
+              </button>
+              <button type="button" onclick="window.location.href='{{ url_for('views.delete', prop_id=property.id) }}';" class="btn btn-danger">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- Interested Property Modal-->
+      <div class="modal fade" tabindex="-1" role="dialog" id="interestedPropertyModal">
+        <div class="modal-dialog" role="document" tabindex="-1">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Interested</h5>
+            </div>
+            <div class="modal-body">
+              <div class="form-floating">
+                <input type="text" class="form-control">
+                <label class="" for="">Client ID</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+                Cancel
+              </button>
+              <button type="button" class="btn btn-primary">
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Property Modal -->
+      <div class="modal fade" id="addPropertyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content form-signin">
+            <div class="modal-header">
+              <h1 class="h3 mb-3 fw-bold">Add Property</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body form-signin">
+              <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" action="/addproperty">
+                <div class="mb-2">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="propertyName" name="propertyName" placeholder="Property Name">
+                    <label for="propertyName">Property Name</label>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="propertyAddress" name="propertyLoc" placeholder="House/Building Number">
+                    <label for="floatingInputGrid">House/Building Number</label>
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="propertyStreet" name="propertyStreet" placeholder="Street">
+                      <label for="propertySeller" class="col-form-label">Street</label>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="propertyBrngy" name="propertyBrgy" placeholder="Barangay">
+                      <label for="propertySeller" class="col-form-label">Barangay</label> 
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="propertyCity" name="propertyCity" placeholder="City">
+                    <label for="propertyAddress">City</label>
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="propertyProv" name="propertyProv" placeholder="Province">
+                      <label for="propertySeller" class="col-form-label">Province</label>
+                    </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="propertyPostal" name="propertyPostal" placeholder="Postal Code">
+                      <label for="propertySeller">Postal Code</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="propertySeller" name="propertyCD" placeholder="Client ID">
+                    <label for="propertySeller" class="col-form-label">Client ID</label>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <select class="form-select" id="" aria-label="statusSelect" name="propertyType" placeholder="Property Type" >
+                    <option selected>Property Type</option>
+                    <option value = "Rent">Rent</optio  n>
+                    <option value="For Sale">For Sale</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" placeholder="Status">
+                    <option selected>Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</optiion>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <label for="propertyImage" class="col-form-label">Insert property image:</label>
+                  <input class="form-control" id="propertyImage" type="file" name="file">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                  <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Property Modal-->
+      {% for property in properties%}
+      {% for address in addresses %}
+        <div class="modal fade" id="myModal{{ property.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content form-signin">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Edit Property</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="" class="needs-validation" novalidate method="POST">
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyName" value={{property.name}}>
+                        <label for="propertyName" class="col-form-label">Property Name</label>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyAddress" value={{address.loc_number}}>
+                        <label for="propertyAddress" class="col-form-label">Location Number</label>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value={{address.street_name}}>
+                          <label for="propertySeller" class="col-form-label">Street Name</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value={{address.barangay}}>
+                          <label for="propertySeller" class="col-form-label">Barangay</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyAddress" value={{address.city}}>
+                        <label for="propertyAddress" class="col-form-label">City</label>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value={{address.province}}>
+                          <label for="propertySeller" class="col-form-label">Province</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value={{address.postal_code}}>
+                          <label for="propertySeller" class="col-form-label">Postal Code</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertySeller" name="propertyPost" value="{{property.client_id}}" disabled>
+                        <label for="propertySeller" class="col-form-label">Client ID</label>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <label for="propertyStatus" class="col-form-label">Property Type:</label>
+                      <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" value="{{property.property_type}}">
+                        {% if property.property_type == "Rent" %}
+                            <option value="Rent" selected>Rent</option>
+                            <option value="For Sale">For Sale</option>
+                        {% else %}
+                            <option value="Rent">Rent</option>
+                            <option value="For Sale" selected>For Sale</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <label for="propertyStatus" class="col-form-label">Status</label>
+                      <select class="form-select" id="" aria-label="statusSelect">
+                        {% if property.is_available %}
+                            <option value="Available" selected>Available</option>
+                            <option value="Unavailable">Unavailable</option>
+                        {% else %}
+                            <option value="Available">Available</option>
+                            <option value="Unavailable" selected>Unavailable</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <label for="propertyImage" class="col-form-label">Property image</label>
+                      <input class="form-control" id="propertyImage" type="file">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                      <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+      {% endfor %}
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#search').on('input', function () {
+            var query = $(this).val();
+
+            $.ajax({
+                url: '/search',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    var properties = response.properties;
+                    var propertyHtml = '';
+                    console.log(properties.client_id)
+                    for (var i = 0; i < properties.length; i++) { 
+                        propertyHtml += '<div class="col">';
+                        propertyHtml += '<div class="card shadow-sm">';
+                        var imageUrl = '/static/images/property_imgs/' + properties[i].bg_image;
+                        propertyHtml += '<img class="bd-placeholder-img card-img-top" src="' + imageUrl + '" width="100%" height="225" alt="">';                       
+                        propertyHtml += '<div class="card-body">';
+                        propertyHtml += '<h2 class="card-title">' + properties[i].name + '</h2>';
+                        propertyHtml += '<p class="card-text"><strong>Seller: </strong>' + properties[i].seller + '</p>';
+                        propertyHtml += '<div class="d-flex justify-content-between align-items-center">';
+                        propertyHtml += '<div class="btn-group">';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal' +properties[i].id+'">Edit</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#interestedPropertyModal">Interested</button>';
+                        propertyHtml += '<button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#delete' + properties[i].id + '">Delete</button>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '<small class="text-body-secondary">Status: ';
+                        if (properties[i].is_available) {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-success">Available</span>';
+                        } else {
+                            propertyHtml += '<span class="badge rounded-pill text-bg-danger">Unavailable</span>';
+                        }
+                        propertyHtml += '</small>';
+
+                        // Adjust the rest of the HTML structure as needed
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        propertyHtml += '</div>';
+                        
+                    }
+
+                    $('.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3').html(propertyHtml);
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
+
+</script>
+  </body>
+</html>
