@@ -111,14 +111,12 @@
                 {% for property in properties %}
                 <div class="col">
                     <div class="card shadow-sm">
+                      <a href="" data-bs-toggle="modal" data-bs-target="#myDetails{{property.id}}">
                         <img class="bd-placeholder-img card-img-top" src="{{ url_for('static', filename='images/property_imgs/'~property.bg_image)}}" width="100%" height="225" alt="{{property.bg_image}}" id="image">
+                      </a>
                         <div class="card-body">
                             <h2 class="card-title">{{ property.name }}</h2>
-                            
-                                <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}} {{property.client.person.last_name}}</p>
-                           
-                                
-                          
+                            <p class="card-text"><strong>Seller: </strong>{{property.client.person.first_name}} {{property.client.person.last_name}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                               <div class="btn-group">
                                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#myModal{{ property.id }}">Edit</button>
@@ -344,6 +342,12 @@
                         <label for="propertySeller" class="col-form-label">Client ID</label>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertySeller" name="propertyPost" value="{{property.client.person.first_name}} {{property.client.person.last_name}}" disabled>
+                        <label for="propertySeller" class="col-form-label">Client Name</label>
+                      </div>
+                    </div>
                     <div class="mb-2">
                       <label for="propertyStatus" class="col-form-label">Property Type:</label>
                       <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" value="{{property.property_type}}">
@@ -382,6 +386,102 @@
             </div>
           </div>
       {% endfor %}
+      {% endfor %}
+       <!--Property Details Modal-->   
+      {% for property, address in property_address %}
+        <div class="modal fade" id="myDetails{{ property.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content form-signin">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Property Details</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="" class="needs-validation" novalidate method="POST">
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyName" value="{{property.name}}" disabled>
+                        <label for="propertyName" class="col-form-label">Property Name</label>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyAddress" value="{{address.loc_number}}" disabled>
+                        <label for="propertyAddress" class="col-form-label">Location Number</label>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value="{{address.street_name}}" disabled>
+                          <label for="propertySeller" class="col-form-label">Street Name</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value="{{address.barangay}}" disabled>
+                          <label for="propertySeller" class="col-form-label">Barangay</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-2">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertyAddress" value="{{address.city}}" disabled>
+                        <label for="propertyAddress" class="col-form-label">City</label>
+                      </div>
+                    </div>
+                    <div class="row g-2">
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value="{{address.province}}" disabled>
+                          <label for="propertySeller" class="col-form-label">Province</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-floating">
+                          <input type="text" class="form-control" id="propertySeller" value="{{address.postal_code}}" disabled>
+                          <label for="propertySeller" class="col-form-label">Postal Code</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertySeller" name="propertyPost" value="{{property.client_id}}" disabled>
+                        <label for="propertySeller" class="col-form-label">Client ID</label>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating">
+                        <input type="text" class="form-control" id="propertySeller" name="propertyPost" value="{{property.client.person.first_name}} {{property.client.person.last_name}}" disabled>
+                        <label for="propertySeller" class="col-form-label">Client Name</label>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating">
+                      <input type="text" class="form-control" id="propertyType" name="propertyPost" value="{{property.property_type}}" disabled>
+                      <label for="propertyType" class="col-form-label">Property Type</label>
+                    </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating">
+                        {% if property.is_available %}
+                            <input type="text" class="form-control" id="propertyStatus" name="propertyStatus" value="Available" disabled>
+                            <label for="propertyStatus" class="col-form-label">Status</label>
+                        {% else %}
+                        <input type="text" class="form-control" id="propertyStatus" name="propertyStatus" value="Unavailable" disabled>
+                        <label for="propertyStatus" class="col-form-label">Status</label>
+                        {% endif %}
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal{{ property.id }}"> Edit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
       {% endfor %}
     </main>
     <script
