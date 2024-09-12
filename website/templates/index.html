@@ -219,16 +219,51 @@
             </div>
             <div class="modal-body form-signin">
               <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" action="/addproperty">
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if
+                  messages %} {% for category, message in messages %} {% if category ==
+                  'error' %}
+                  <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {{ message }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  {% else %}
+                  <div
+                    class="alert alert-success alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {{ message }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  {% endif %} {% endfor %} {% endif %} {% endwith %}
                 <div class="mb-2">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="propertyName" name="propertyName" placeholder="Property Name">
                     <label for="propertyName">Property Name</label>
+                    <div class="invalid-feedback">
+                      Must not be empty
+                    </div>
                   </div>
                 </div>
                 <div class="mb-2">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="propertyAddress" name="propertyLoc" placeholder="House/Building Number">
                     <label for="floatingInputGrid">House/Building Number</label>
+                    <div class="invalid-feedback">
+                      Must not be empty
+                    </div>
                   </div>
                 </div>
                 <div class="row g-2">
@@ -236,12 +271,18 @@
                     <div class="form-floating">
                       <input type="text" class="form-control" id="propertyStreet" name="propertyStreet" placeholder="Street">
                       <label for="propertySeller" class="col-form-label">Street</label>
+                      <div class="invalid-feedback">
+                        Must not be empty
+                      </div>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
                       <input type="text" class="form-control" id="propertyBrngy" name="propertyBrgy" placeholder="Barangay">
-                      <label for="propertySeller" class="col-form-label">Barangay</label> 
+                      <label for="propertySeller" class="col-form-label">Barangay</label>
+                      <div class="invalid-feedback">
+                        Must not be empty
+                      </div> 
                     </div>
                   </div>
                 </div>
@@ -249,6 +290,9 @@
                   <div class="form-floating">
                     <input type="text" class="form-control" id="propertyCity" name="propertyCity" placeholder="City">
                     <label for="propertyAddress">City</label>
+                    <div class="invalid-feedback">
+                      Must not be empty
+                    </div>
                   </div>
                 </div>
                 <div class="row g-2">
@@ -256,12 +300,18 @@
                     <div class="form-floating">
                       <input type="text" class="form-control" id="propertyProv" name="propertyProv" placeholder="Province">
                       <label for="propertySeller" class="col-form-label">Province</label>
+                      <div class="invalid-feedback">
+                        Must not be empty
+                      </div>
                     </div>
                   </div>
                   <div class="col-md">
                     <div class="form-floating">
                       <input type="text" class="form-control" id="propertyPostal" name="propertyPostal" placeholder="Postal Code">
                       <label for="propertySeller">Postal Code</label>
+                      <div class="invalid-feedback">
+                        Enter an appropriate value
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -269,21 +319,30 @@
                   <div class="form-floating">
                     <input type="text" class="form-control" id="propertySeller" name="propertyCD" placeholder="Client ID">
                     <label for="propertySeller" class="col-form-label">Client ID</label>
+                    <div class="invalid-feedback">
+                      Must not be empty
+                    </div>
                   </div>
                 </div>
                 <div class="mb-2">
-                  <select class="form-select" id="" aria-label="statusSelect" name="propertyType" placeholder="Property Type" >
+                  <select class="form-select" id="PropType" aria-label="statusSelect" name="propertyType" placeholder="Property Type" >
                     <option selected>Property Type</option>
                     <option value = "Rent">Rent</optio  n>
                     <option value="For Sale">For Sale</option>
                   </select>
+                  <div class="invalid-feedback">
+                    Choose property type!
+                  </div>
                 </div>
                 <div class="mb-2">
-                  <select class="form-select" id="" aria-label="statusSelect" name="propertyStat" placeholder="Status">
+                  <select class="form-select" id="PropStatus" aria-label="statusSelect" name="propertyStat" placeholder="Status">
                     <option selected>Status</option>
                     <option value="Available">Available</option>
                     <option value="Unavailable">Unavailable</optiion>
                   </select>
+                  <div class="invalid-feedback">
+                    Choose property status!
+                  </div>
                 </div>
                 <div class="mb-2">
                   <label for="propertyImage" class="col-form-label">Insert property image:</label>
@@ -291,7 +350,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                  <button class="btn btn-primary" type="submit">Save</button>
+                  <button class="btn btn-primary" type="submitadd">Save</button>
                 </div>
               </form>
             </div>
@@ -495,7 +554,7 @@
     ></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
+  <script>
     $(document).ready(function () {
         $('#search').on('input', function () {
             var query = $(this).val();
@@ -549,6 +608,123 @@
         });
     });
 
-</script>
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      $('#addPropertyModal').on('shown.bs.modal', function () {
+      var form = document.querySelector("#addPropertyModal form");
+
+            form.addEventListener("submitadd", function (event) {
+            var propertyName = document.getElementById("propertyName");
+            var propertyAddress = document.getElementById("propertyAddress");
+            var propertyStreet = document.getElementById("propertyStreet");
+            var propertyBrngy = document.getElementById("propertyBrngy");
+            var propertyCity = document.getElementById("propertyCity");
+            var propertyProv = document.getElementById("propertyProv");
+            var propertyPostal = document.getElementById("propertyPotstal");
+            var propertySeller = document.getElementById("propertySeller");
+            var PropType = document.getElementById("PropType");
+            var PropStatus = document.getElementById("PropStatus");
+
+            // Validate property name length
+            if (propertyName.value.length < 2) {
+              firstName.classList.add("is-invalid");
+              event.preventDefault(); // Prevent the form submission
+            } else {
+              firstName.classList.remove("is-invalid");
+            }
+
+            // Validate house or building
+            if (propertyAddress.value.length <= 2) {
+                propertyAddress.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertyAddress.classList.remove("is-invalid");
+            }
+
+            // Validate street
+            if (propertyStreet.value.length <= 2) {
+                propertyStreet.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertyStreet.classList.remove("is-invalid");
+            }
+
+            // Validate barangay
+            if (propertyBrngy.value.length <= 2) {
+                propertyBrngy.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertyBrngy.classList.remove("is-invalid");
+            }
+
+            // Validate city
+            if (propertyCity.value.length <= 2) {
+                PropertyCity.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                PropertyCity.classList.remove("is-invalid");
+            }
+
+            // Validate province
+            if (propertyProv.value.length <= 2) {
+                propertyProv.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertyProv.classList.remove("is-invalid");
+            }
+
+            // Validate postal code
+            var postalCodeRegex = /^\d+$/;
+            if (propertyPostal.value.length === 0 || !postalCodeRegex.test(propertyPostal.value)) {
+                propertyPostal.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertyPostal.classList.remove("is-invalid");
+            }
+
+            // Validate Seller by length
+            if (propertySeller.value.length <= 1) {
+                propertySeller.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                propertySeller.classList.remove("is-invalid");
+            }
+            
+            // Type
+            if(PropType.value == "Property Type") {
+                PropType.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                PropType.classList.remove("is-invalid");
+            }
+
+            // Status
+            if(PropStatus.value == "Status") {
+                PropStatus.classList.add("is-invalid");
+                event.preventDefault();
+            } else {
+                PropStatus.classList.remove("is-invalid");
+            }
+
+            });
+
+            var inputs = document.querySelectorAll("#addPropertyModal input");
+            var selects = document.querySelectorAll("#addPropertyModal input");
+
+            inputs.forEach(function (input) {
+              input.addEventListener("input", function () {
+                this.classList.remove("is-invalid");
+              });
+            });
+
+            selects.forEach(function (select) {
+              select.addEventListener("change", function () {
+                this.classList.remove("is-invalid");
+              });
+            });        
+        });
+    });
+    </script>
   </body>
 </html>
